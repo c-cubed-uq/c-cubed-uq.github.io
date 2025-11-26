@@ -73,38 +73,38 @@
 
             // update the relevant elements
             for (const val of values) {
-            const letter = sampleLetter[val];
+                const letter = sampleLetter[val];
 
-            // ground-truth
-            var videos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_gt");
-            videos.forEach(video => {
-                video.src = "./static/videos/experiments/" + task + "/" + letter + "/rgb.mp4"
-                video.poster = "./static/thumbnails/experiments/" + task + "/" + letter + "/rgb.jpg"
-            });
-
-            // generated / composited / map (indices may be 0 only in markup, but loop is safe)
-            for (let t_idx = 0; t_idx < 3; t_idx++) {
-                // generated
-                var genVideos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_generated_" + t_idx);
-                genVideos.forEach(video => {
-                video.src = "./static/videos/experiments/" + task + "/" + letter + "/conf_thresh_0.9.mp4"
-                video.poster = "./static/thumbnails/experiments/" + task + "/" + letter + "/conf_thresh_0.9.jpg"
+                // ground-truth
+                var videos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_gt");
+                videos.forEach(video => {
+                    video.src = "./static/videos/experiments/" + task + "/" + letter + "/rgb.mp4"
+                    video.poster = "./static/thumbnails/experiments/" + task + "/" + letter + "/rgb.jpg"
                 });
 
-                // composited
-                var compVideos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_composited_" + t_idx);
-                compVideos.forEach(video => {
-                video.src = "./static/videos/experiments/" + task + "/" + letter + "/composited_pred_conf_gen_video_conf_thresh_0.9.mp4"
-                video.poster = "./static/thumbnails/experiments/" + task + "/" + letter + "/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
-                });
+                // generated / composited / map (indices may be 0 only in markup, but loop is safe)
+                for (let t_idx = 0; t_idx < 3; t_idx++) {
+                    // generated
+                    var genVideos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_generated_" + t_idx);
+                    genVideos.forEach(video => {
+                        video.src = "./static/videos/experiments/" + task + "/" + letter + "/conf_thresh_0.9.mp4"
+                        video.poster = "./static/thumbnails/experiments/" + task + "/" + letter + "/conf_thresh_0.9.jpg"
+                    });
 
-                // uncertainty map
-                var mapVideos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_map_" + t_idx);
-                mapVideos.forEach(video => {
-                video.src = "./static/videos/experiments/" + task + "/" + letter + "/pred_conf_gen_video_conf_thresh_0.9.mp4"
-                video.poster = "./static/thumbnails/experiments/" + task + "/" + letter + "/pred_conf_gen_video_conf_thresh_0.9.jpg"
-                });
-            };
+                    // composited
+                    var compVideos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_composited_" + t_idx);
+                    compVideos.forEach(video => {
+                        video.src = "./static/videos/experiments/" + task + "/" + letter + "/composited_pred_conf_gen_video_conf_thresh_0.9.mp4"
+                        video.poster = "./static/thumbnails/experiments/" + task + "/" + letter + "/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
+                    });
+
+                    // uncertainty map
+                    var mapVideos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_map_" + t_idx);
+                    mapVideos.forEach(video => {
+                        video.src = "./static/videos/experiments/" + task + "/" + letter + "/pred_conf_gen_video_conf_thresh_0.9.mp4"
+                        video.poster = "./static/thumbnails/experiments/" + task + "/" + letter + "/pred_conf_gen_video_conf_thresh_0.9.jpg"
+                    });
+                };
             };
 
 
@@ -413,7 +413,8 @@
                             <img src="static/assets/icon.gif" alt="Icon" style="height: 3.5em; max-width: 100%;">
                         </div>
                         <div style="flex: 0 0 82%; text-align: left;">
-                            Continuous Calibrated Controllable <br /> <span style="font-size: xx-large;"> Video Generation  </span>
+                            Continuous Calibrated Controllable <br /> <span style="font-size: xx-large;"> Video
+                                Generation </span>
                         </div>
                     </div>
                 </h1>
@@ -422,7 +423,8 @@
                 <div class="is-size-5 publication-authors">
                     <div>
                         <span class="author-block"><a href="https://may0mei.github.io/">Zhiting&nbsp;Mei*</a></span>,
-                        <span class="author-block"><a href="https://tenny-yinyijun.github.io/">Tenny&nbsp;Yin</a></span>,
+                        <span class="author-block"><a
+                                href="https://tenny-yinyijun.github.io/">Tenny&nbsp;Yin</a></span>,
                         <span class="author-block"><a href="#">Micah&nbsp;Baker</a></span>,
                         <span class="author-block"><a href="#">Ola&nbsp;Shorinwa*</a></span>,
                         <span class="author-block"><a
@@ -477,10 +479,10 @@
             </video>
             <p style="margin-top:1rem;">
                 We present <img src="static/images/architecture/algname.svg" alt="C3"
-                    style="display: inline; height: 1em; vertical-align: baseline;">, the first method for 
-                    training continuous-scale calibrated controllable (action-conditioned) video models using
-                    proper scoring rules to generate dense confidence predictions at the subpatch (channel) 
-                    level that are physically interpretable and aligned with observations.
+                    style="display: inline; height: 1em; vertical-align: baseline;">, the first method for
+                training continuous-scale calibrated controllable (action-conditioned) video models using
+                proper scoring rules to generate dense confidence predictions at the subpatch (channel)
+                level that are physically interpretable and aligned with observations.
             </p>
         </div>
     </section>
@@ -490,27 +492,41 @@
         <div class="container is-max-desktop content-container">
             <h2 class="title is-3 has-text-centered">Abstract</h2>
             <p>
-                Recent advances in generative video models have led to significant breakthroughs in high-fidelity video synthesis, 
-                specifically in controllable video generation where the generated video is conditioned on text and action inputs. 
-                This impressive leap in performance has paved the way for broad applications from instruction-guided video editing 
+                Recent advances in generative video models have led to significant breakthroughs in high-fidelity video
+                synthesis,
+                specifically in controllable video generation where the generated video is conditioned on text and
+                action inputs.
+                This impressive leap in performance has paved the way for broad applications from instruction-guided
+                video editing
                 to world modeling in robotics.
                 Despite these exceptional capabilities, controllable video models often <strong>hallucinate</strong>
-                ---generating future video frames that are misaligned with physical reality---which raises serious concerns 
-                in many tasks such as robot policy evaluation and planning. However, state-of-the-art video models lack the 
+                ---generating future video frames that are misaligned with physical reality---which raises serious
+                concerns
+                in many tasks such as robot policy evaluation and planning. However, state-of-the-art video models lack
+                the
                 ability to assess and express their confidence, further impeding hallucination mitigation.
-                To rigorously address this challenge, we propose <img src="static/images/architecture/algname.svg" alt="C3"
-                    style="display: inline; height: 1em; vertical-align: baseline;">,
-                an uncertainty quantification method for training <strong>continuous-scale</strong> <strong>calibrated</strong> <strong>controllable</strong> video models 
-                for <strong>dense</strong> confidence estimation at the <strong>subpatch</strong> (channel) level, precisely localizing the uncertainty 
-                in each generated video frame. The effectiveness of our UQ method is underpinned by three core innovations:
-                First, our method introduces a novel framework that trains video models for <strong>correctness</strong> and <strong>calibration</strong> 
+                To rigorously address this challenge, we propose <img src="static/images/architecture/algname.svg"
+                    alt="C3" style="display: inline; height: 1em; vertical-align: baseline;">,
+                an uncertainty quantification method for training <strong>continuous-scale</strong>
+                <strong>calibrated</strong> <strong>controllable</strong> video models
+                for <strong>dense</strong> confidence estimation at the <strong>subpatch</strong> (channel) level,
+                precisely localizing the uncertainty
+                in each generated video frame. The effectiveness of our UQ method is underpinned by three core
+                innovations:
+                First, our method introduces a novel framework that trains video models for <strong>correctness</strong>
+                and <strong>calibration</strong>
                 via strictly proper scoring rules.
-                Second, we estimate the video model's uncertainty in latent space, avoiding training instability and prohibitive training 
+                Second, we estimate the video model's uncertainty in latent space, avoiding training instability and
+                prohibitive training
                 costs associated with pixel-space approaches.
-                Third, we map the dense latent-space uncertainty  to <strong>interpretable</strong> pixel-level uncertainty in the RGB space for 
-                intuitive visualization, providing high-resolution uncertainty heatmaps that identify untrustworthy regions.
-                Through extensive experiments on large-scale robot learning datasets (Bridge and DROID) and real-world evaluations, 
-                we demonstrate that our method not only provides calibrated uncertainty estimates within the training distribution, 
+                Third, we map the dense latent-space uncertainty to <strong>interpretable</strong> pixel-level
+                uncertainty in the RGB space for
+                intuitive visualization, providing high-resolution uncertainty heatmaps that identify untrustworthy
+                regions.
+                Through extensive experiments on large-scale robot learning datasets (Bridge and DROID) and real-world
+                evaluations,
+                we demonstrate that our method not only provides calibrated uncertainty estimates within the training
+                distribution,
                 but also enables effective out-of-distribution detection.
             </p>
             <!-- <br>
@@ -524,7 +540,8 @@
     <!-- ===== Architecture ===== -->
     <section id="architecture" class="section">
         <div class="container is-max-desktop content-container">
-            <h2 class="title is-3 has-text-centered">Uncertainty Quantification via <img src="static/images/architecture/algname.svg" alt="C3"
+            <h2 class="title is-3 has-text-centered">Uncertainty Quantification via <img
+                    src="static/images/architecture/algname.svg" alt="C3"
                     style="display: inline; height: 1em; vertical-align: baseline;"></h2>
             <video class="overview-video" autoplay loop muted playsinline
                 poster="static/thumbnails/overviews/architecture.jpg">
@@ -812,15 +829,17 @@
                     <div class="column" style="text-align: center;">
                         <div style="padding-bottom: 10px; padding-top: 5px; display: flex;">
                             <p>
-                                We visualize the ground-truth, generated, composited uncertainty, and uncertainty map videos, 
-                                highlighting the various types of hallucinations of the video model: object appearing/disappearing,
+                                We visualize the ground-truth, generated, composited uncertainty, and uncertainty map
+                                videos,
+                                highlighting the various types of hallucinations of the video model: object
+                                appearing/disappearing,
                                 distortion, interaction dynamics, and occlusion.
                             </p>
                         </div>
                         <div class="select is-rounded">
                             <select id="interative-menu-human-annotated-unc"
                                 onchange="updateInteractive_human_annotated_unc('human')">
-                                <option value="0" selected="selected">Object Appearing</option> 
+                                <option value="0" selected="selected">Object Appearing</option>
                                 <option value="1">Object Disappearing</option>
                                 <option value="2">Object Distortion</option>
                                 <option value="3">Dynamics</option>
@@ -836,17 +855,22 @@
                     <div id="results-carousel-human-annotated-unc" class="carousel results-carousel">
 
                         <!-- Top labels aligned with four columns -->
-                        <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 0 2rem;">
-                            <div class="rounded-textbox" style="flex: 1 1 25%; text-align: center; background-color: #79b5e9; color: black;">
+                        <div
+                            style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 0 2rem;">
+                            <div class="rounded-textbox"
+                                style="flex: 1 1 25%; text-align: center; background-color: #79b5e9; color: black;">
                                 Ground-Truth
                             </div>
-                            <div class="rounded-textbox" style="flex: 1 1 25%; text-align: center; background-color: #c3a3ec; color: black;">
+                            <div class="rounded-textbox"
+                                style="flex: 1 1 25%; text-align: center; background-color: #c3a3ec; color: black;">
                                 Generated
                             </div>
-                            <div class="rounded-textbox" style="flex: 1 1 25%; text-align: center; background-color: #fbacb5; color: black;">
+                            <div class="rounded-textbox"
+                                style="flex: 1 1 25%; text-align: center; background-color: #fbacb5; color: black;">
                                 Composited
                             </div>
-                            <div class="rounded-textbox" style="flex: 1 1 25%; text-align: center; background-color: #a2d56b; color: black;">
+                            <div class="rounded-textbox"
+                                style="flex: 1 1 25%; text-align: center; background-color: #a2d56b; color: black;">
                                 Uncertainty Maps
                             </div>
                         </div>
@@ -854,21 +878,24 @@
                         <!-- <hr> -->
 
                         <!-- Row for sample a -->
-                        <div style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem;">
+                        <div
+                            style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem;">
                             <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
                                 <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/0/a/rgb.jpg"
-                                    preload="metadata" class="human_annotated_unc_low_gt" height="100%">
+                                    poster="./static/thumbnails/experiments/0/a/rgb.jpg" preload="metadata"
+                                    class="human_annotated_unc_low_gt" height="100%">
                                     <source src="./static/videos/experiments/0/a/rgb.mp4" type="video/mp4" />
                                 </video>
-                                <p style="text-align: left;" id="text_human_annotated_unc_low_gt_sample_0" class="text_human_annotated_unc_low_gt"></p>
+                                <p style="text-align: left;" id="text_human_annotated_unc_low_gt_sample_0"
+                                    class="text_human_annotated_unc_low_gt"></p>
                             </div>
 
                             <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
                                 <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/0/a/conf_thresh_0.9.jpg"
-                                    preload="metadata" class="human_annotated_unc_low_generated_0" height="100%">
-                                    <source src="./static/videos/experiments/0/a/conf_thresh_0.9.mp4" type="video/mp4" />
+                                    poster="./static/thumbnails/experiments/0/a/conf_thresh_0.9.jpg" preload="metadata"
+                                    class="human_annotated_unc_low_generated_0" height="100%">
+                                    <source src="./static/videos/experiments/0/a/conf_thresh_0.9.mp4"
+                                        type="video/mp4" />
                                 </video>
                             </div>
 
@@ -876,7 +903,9 @@
                                 <video autoplay loop muted playsinline
                                     poster="./static/thumbnails/experiments/0/a/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
                                     preload="metadata" class="human_annotated_unc_low_composited_0" height="100%">
-                                    <source src="./static/videos/experiments/0/a/composited_pred_conf_gen_video_conf_thresh_0.9.mp4" type="video/mp4" />
+                                    <source
+                                        src="./static/videos/experiments/0/a/composited_pred_conf_gen_video_conf_thresh_0.9.mp4"
+                                        type="video/mp4" />
                                 </video>
                             </div>
 
@@ -884,27 +913,32 @@
                                 <video autoplay loop muted playsinline
                                     poster="./static/thumbnails/experiments/0/a/pred_conf_gen_video_conf_thresh_0.9.jpg"
                                     preload="metadata" class="human_annotated_unc_low_map_0" height="100%">
-                                    <source src="./static/videos/experiments/0/a/pred_conf_gen_video_conf_thresh_0.9.mp4" type="video/mp4" />
+                                    <source
+                                        src="./static/videos/experiments/0/a/pred_conf_gen_video_conf_thresh_0.9.mp4"
+                                        type="video/mp4" />
                                 </video>
                             </div>
                         </div>
 
                         <!-- Row for sample b -->
-                        <div style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem;">
+                        <div
+                            style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem;">
                             <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
                                 <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/0/b/rgb.jpg"
-                                    preload="metadata" class="human_annotated_unc_med_gt" height="100%">
+                                    poster="./static/thumbnails/experiments/0/b/rgb.jpg" preload="metadata"
+                                    class="human_annotated_unc_med_gt" height="100%">
                                     <source src="./static/videos/experiments/0/b/rgb.mp4" type="video/mp4" />
                                 </video>
-                                <p style="text-align: left;" id="text_human_annotated_unc_med_gt_sample_0" class="text_human_annotated_unc_med_gt"></p>
+                                <p style="text-align: left;" id="text_human_annotated_unc_med_gt_sample_0"
+                                    class="text_human_annotated_unc_med_gt"></p>
                             </div>
 
                             <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
                                 <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/0/b/conf_thresh_0.9.jpg"
-                                    preload="metadata" class="human_annotated_unc_med_generated_0" height="100%">
-                                    <source src="./static/videos/experiments/0/b/conf_thresh_0.9.mp4" type="video/mp4" />
+                                    poster="./static/thumbnails/experiments/0/b/conf_thresh_0.9.jpg" preload="metadata"
+                                    class="human_annotated_unc_med_generated_0" height="100%">
+                                    <source src="./static/videos/experiments/0/b/conf_thresh_0.9.mp4"
+                                        type="video/mp4" />
                                 </video>
                             </div>
 
@@ -912,7 +946,9 @@
                                 <video autoplay loop muted playsinline
                                     poster="./static/thumbnails/experiments/0/b/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
                                     preload="metadata" class="human_annotated_unc_med_composited_0" height="100%">
-                                    <source src="./static/videos/experiments/0/b/composited_pred_conf_gen_video_conf_thresh_0.9.mp4" type="video/mp4" />
+                                    <source
+                                        src="./static/videos/experiments/0/b/composited_pred_conf_gen_video_conf_thresh_0.9.mp4"
+                                        type="video/mp4" />
                                 </video>
                             </div>
 
@@ -920,27 +956,32 @@
                                 <video autoplay loop muted playsinline
                                     poster="./static/thumbnails/experiments/0/b/pred_conf_gen_video_conf_thresh_0.9.jpg"
                                     preload="metadata" class="human_annotated_unc_med_map_0" height="100%">
-                                    <source src="./static/videos/experiments/0/b/pred_conf_gen_video_conf_thresh_0.9.mp4" type="video/mp4" />
+                                    <source
+                                        src="./static/videos/experiments/0/b/pred_conf_gen_video_conf_thresh_0.9.mp4"
+                                        type="video/mp4" />
                                 </video>
                             </div>
                         </div>
 
                         <!-- Row for sample c -->
-                        <div style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem; margin-bottom: 1rem;">
+                        <div
+                            style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem; margin-bottom: 1rem;">
                             <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
                                 <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/0/c/rgb.jpg"
-                                    preload="metadata" class="human_annotated_unc_high_gt" height="100%">
+                                    poster="./static/thumbnails/experiments/0/c/rgb.jpg" preload="metadata"
+                                    class="human_annotated_unc_high_gt" height="100%">
                                     <source src="./static/videos/experiments/0/c/rgb.mp4" type="video/mp4" />
                                 </video>
-                                <p style="text-align: left;" id="text_human_annotated_unc_high_gt_sample_0" class="text_human_annotated_unc_high_gt"></p>
+                                <p style="text-align: left;" id="text_human_annotated_unc_high_gt_sample_0"
+                                    class="text_human_annotated_unc_high_gt"></p>
                             </div>
 
                             <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
                                 <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/0/c/conf_thresh_0.9.jpg"
-                                    preload="metadata" class="human_annotated_unc_high_generated_0" height="100%">
-                                    <source src="./static/videos/experiments/0/c/conf_thresh_0.9.mp4" type="video/mp4" />
+                                    poster="./static/thumbnails/experiments/0/c/conf_thresh_0.9.jpg" preload="metadata"
+                                    class="human_annotated_unc_high_generated_0" height="100%">
+                                    <source src="./static/videos/experiments/0/c/conf_thresh_0.9.mp4"
+                                        type="video/mp4" />
                                 </video>
                             </div>
 
@@ -948,7 +989,9 @@
                                 <video autoplay loop muted playsinline
                                     poster="./static/thumbnails/experiments/0/c/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
                                     preload="metadata" class="human_annotated_unc_high_composited_0" height="100%">
-                                    <source src="./static/videos/experiments/0/c/composited_pred_conf_gen_video_conf_thresh_0.9.mp4" type="video/mp4" />
+                                    <source
+                                        src="./static/videos/experiments/0/c/composited_pred_conf_gen_video_conf_thresh_0.9.mp4"
+                                        type="video/mp4" />
                                 </video>
                             </div>
 
@@ -956,7 +999,9 @@
                                 <video autoplay loop muted playsinline
                                     poster="./static/thumbnails/experiments/0/c/pred_conf_gen_video_conf_thresh_0.9.jpg"
                                     preload="metadata" class="human_annotated_unc_high_map_0" height="100%">
-                                    <source src="./static/videos/experiments/0/c/pred_conf_gen_video_conf_thresh_0.9.mp4" type="video/mp4" />
+                                    <source
+                                        src="./static/videos/experiments/0/c/pred_conf_gen_video_conf_thresh_0.9.mp4"
+                                        type="video/mp4" />
                                 </video>
                             </div>
                         </div>

@@ -8,8 +8,10 @@ WIDTH=640
 # loop through all subfolders
 for dir in */ ; do
     # enter subfolder, loop through subfolders
+    echo "Dir: $dir"
     cd "$dir"
     for subdir in */ ; do
+        echo "Subdir: $subdir"
         cd "$subdir"
         # loop through all mp4 files and resize
         for file in *.mp4 ; do
@@ -32,10 +34,12 @@ for dir in */ ; do
 
             # remove original file
             rm -f -- "original_$file"
+
+            echo "Processed $file"
         done
         # go back to parent directory
         cd ..
-    done
+        done
     # go back to parent directory
     cd ..
 done
