@@ -827,185 +827,133 @@
 
                 <div class="container">
                     <div id="results-carousel-human-annotated-unc" class="carousel results-carousel">
-                        <!-- ===== Human-annotated Ground-Truth Videos ===== -->
-                        <!-- #b9e4f9 -->
-                        <div style="display: flex; align-items: center;">
-                            <div class="rounded-textbox" , style="background-color: #79b5e9; color: black;">
-                                Ground-Truth Videos
-                            </div>
-                        </div>
 
-                        <div
-                            style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
-                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
-                                <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/0/a/rgb.jpg"
-                                    preload="metadata" class="human_annotated_unc_low_gt" autoplay muted loop
-                                    playsinline height="100%">
-                                    <source src="./static/videos/experiments/0/a/rgb.mp4"
-                                        type="video/mp4" /> <!--1-->
-                                </video>
-                                <p style="text-align: left;" id="text_human_annotated_unc_low_gt_sample_0"
-                                    class="text_human_annotated_unc_low_gt">
-                                </p>
-                                <p style="text-align: left; display: none;"
-                                    id="text_human_annotated_unc_low_gt_sample_1"
-                                    class="text_human_annotated_unc_low_gt">
-                                </p>
+                        <!-- Top labels aligned with four columns -->
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 0 2rem;">
+                            <div class="rounded-textbox" style="flex: 1 1 25%; text-align: center; background-color: #79b5e9; color: black;">
+                                Ground-Truth
                             </div>
-                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
-                                <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/0/b/rgb.jpg"
-                                    preload="metadata" class="human_annotated_unc_med_gt" autoplay muted loop
-                                    playsinline height="100%">
-                                    <source src="./static/videos/experiments/0/b/rgb.mp4" 
-                                        type="video/mp4" />  <!--3-->
-                                </video>
-                                <p style="text-align: left;" id="text_human_annotated_unc_med_gt_sample_0"
-                                    class="text_human_annotated_unc_med_gt">
-                                </p>
-                                <p style="text-align: left; display: none;"
-                                    id="text_human_annotated_unc_med_gt_sample_1"
-                                    class="text_human_annotated_unc_med_gt">
-                                </p>
+                            <div class="rounded-textbox" style="flex: 1 1 25%; text-align: center; background-color: #c3a3ec; color: black;">
+                                Generated
                             </div>
-                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
-                                <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/0/c/rgb.jpg"
-                                    preload="metadata" class="human_annotated_unc_high_gt" autoplay muted loop
-                                    playsinline height="100%">
-                                    <source src="./static/videos/experiments/0/c/rgb.mp4"
-                                        type="video/mp4" />
-                                </video>
-                                <p style="text-align: left;" id="text_human_annotated_unc_high_gt_sample_0"
-                                    class="text_human_annotated_unc_high_gt">
-                                </p>
-                                <p style="text-align: left; display: none;"
-                                    id="text_human_annotated_unc_high_gt_sample_1"
-                                    class="text_human_annotated_unc_high_gt">
-                                </p>
+                            <div class="rounded-textbox" style="flex: 1 1 25%; text-align: center; background-color: #fbacb5; color: black;">
+                                Composited
                             </div>
-                        </div>
-
-                        <hr>
-
-
-                        <!-- ===== Generated Videos ===== -->
-                        <div style="display: flex; align-items: center;">
-                            <div class="rounded-textbox" , style="background-color: #c3a3ec; color: black;">
-                                Generated Videos
-                            </div>
-                        </div>
-
-                        <div
-                            style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
-                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
-                                <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/0/a/conf_thresh_0.9.jpg"
-                                    preload="metadata" class="human_annotated_unc_low_generated_0" autoplay muted loop
-                                    playsinline height="100%">
-                                    <source src="./static/videos/experiments/0/a/conf_thresh_0.9.mp4"
-                                        type="video/mp4" />
-                                </video>
-                            </div>
-                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
-                                <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/0/b/conf_thresh_0.9.jpg"
-                                    preload="metadata" class="human_annotated_unc_med_generated_0" autoplay muted loop
-                                    playsinline height="100%">
-                                    <source src="./static/videos/experiments/0/b/conf_thresh_0.9.mp4"
-                                        type="video/mp4" />
-                                </video>
-                            </div>
-                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
-                                <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/0/c/conf_thresh_0.9.jpg"
-                                    preload="metadata" class="human_annotated_unc_high_generated_0" autoplay muted loop
-                                    playsinline height="100%">
-                                    <source src="./static/videos/experiments/0/c/conf_thresh_0.9.mp4"
-                                        type="video/mp4" />
-                                </video>
-                            </div>
-                        </div>
-
-                        <!-- ===== Composite Videos ===== -->
-                        <div style="display: flex; align-items: center;">
-                            <div class="rounded-textbox" , style="background-color: #fbacb5; color: black;">
-                                Composited Videos
-                            </div>
-                        </div>
-
-                        <div
-                            style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
-                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
-                                <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/0/a/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
-                                    preload="metadata" class="human_annotated_unc_low_generated_0" autoplay muted loop
-                                    playsinline height="100%">
-                                    <source src="./static/videos/experiments/0/a/composited_pred_conf_gen_video_conf_thresh_0.9.mp4"
-                                        type="video/mp4" />
-                                </video>
-                            </div>
-                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
-                                <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/0/b/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
-                                    preload="metadata" class="human_annotated_unc_med_generated_0" autoplay muted loop
-                                    playsinline height="100%">
-                                    <source src="./static/videos/experiments/0/b/composited_pred_conf_gen_video_conf_thresh_0.9.mp4"
-                                        type="video/mp4" />
-                                </video>
-                            </div>
-                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
-                                <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/0/c/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
-                                    preload="metadata" class="human_annotated_unc_high_generated_0" autoplay muted loop
-                                    playsinline height="100%">
-                                    <source src="./static/videos/experiments/0/c/composited_pred_conf_gen_video_conf_thresh_0.9.mp4"
-                                        type="video/mp4" />
-                                </video>
-                            </div>
-                        </div>
-
-                        <!-- ===== Uncertainty Maps ===== -->
-                        <div style="display: flex; align-items: center;">
-                            <div class="rounded-textbox" , style="background-color: #a2d56b; color: black;">
+                            <div class="rounded-textbox" style="flex: 1 1 25%; text-align: center; background-color: #a2d56b; color: black;">
                                 Uncertainty Maps
                             </div>
                         </div>
 
-                        <div
-                            style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
-                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                        <!-- <hr> -->
+
+                        <!-- Row for sample a -->
+                        <div style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem;">
+                            <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/0/a/rgb.jpg"
+                                    preload="metadata" class="human_annotated_unc_low_gt" height="100%">
+                                    <source src="./static/videos/experiments/0/a/rgb.mp4" type="video/mp4" />
+                                </video>
+                                <p style="text-align: left;" id="text_human_annotated_unc_low_gt_sample_0" class="text_human_annotated_unc_low_gt"></p>
+                            </div>
+
+                            <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/0/a/conf_thresh_0.9.jpg"
+                                    preload="metadata" class="human_annotated_unc_low_generated_0" height="100%">
+                                    <source src="./static/videos/experiments/0/a/conf_thresh_0.9.mp4" type="video/mp4" />
+                                </video>
+                            </div>
+
+                            <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/0/a/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
+                                    preload="metadata" class="human_annotated_unc_low_composited_0" height="100%">
+                                    <source src="./static/videos/experiments/0/a/composited_pred_conf_gen_video_conf_thresh_0.9.mp4" type="video/mp4" />
+                                </video>
+                            </div>
+
+                            <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
                                 <video autoplay loop muted playsinline
                                     poster="./static/thumbnails/experiments/0/a/pred_conf_gen_video_conf_thresh_0.9.jpg"
-                                    preload="metadata" class="human_annotated_unc_low_generated_0" autoplay muted loop
-                                    playsinline height="100%">
-                                    <source src="./static/videos/experiments/0/a/pred_conf_gen_video_conf_thresh_0.9.mp4"
-                                        type="video/mp4" />
+                                    preload="metadata" class="human_annotated_unc_low_map_0" height="100%">
+                                    <source src="./static/videos/experiments/0/a/pred_conf_gen_video_conf_thresh_0.9.mp4" type="video/mp4" />
                                 </video>
                             </div>
-                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                        </div>
+
+                        <!-- Row for sample b -->
+                        <div style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem;">
+                            <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/0/b/rgb.jpg"
+                                    preload="metadata" class="human_annotated_unc_med_gt" height="100%">
+                                    <source src="./static/videos/experiments/0/b/rgb.mp4" type="video/mp4" />
+                                </video>
+                                <p style="text-align: left;" id="text_human_annotated_unc_med_gt_sample_0" class="text_human_annotated_unc_med_gt"></p>
+                            </div>
+
+                            <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/0/b/conf_thresh_0.9.jpg"
+                                    preload="metadata" class="human_annotated_unc_med_generated_0" height="100%">
+                                    <source src="./static/videos/experiments/0/b/conf_thresh_0.9.mp4" type="video/mp4" />
+                                </video>
+                            </div>
+
+                            <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/0/b/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
+                                    preload="metadata" class="human_annotated_unc_med_composited_0" height="100%">
+                                    <source src="./static/videos/experiments/0/b/composited_pred_conf_gen_video_conf_thresh_0.9.mp4" type="video/mp4" />
+                                </video>
+                            </div>
+
+                            <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
                                 <video autoplay loop muted playsinline
                                     poster="./static/thumbnails/experiments/0/b/pred_conf_gen_video_conf_thresh_0.9.jpg"
-                                    preload="metadata" class="human_annotated_unc_med_generated_0" autoplay muted loop
-                                    playsinline height="100%">
-                                    <source src="./static/videos/experiments/0/b/pred_conf_gen_video_conf_thresh_0.9.mp4"
-                                        type="video/mp4" />
+                                    preload="metadata" class="human_annotated_unc_med_map_0" height="100%">
+                                    <source src="./static/videos/experiments/0/b/pred_conf_gen_video_conf_thresh_0.9.mp4" type="video/mp4" />
                                 </video>
                             </div>
-                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
+                        </div>
+
+                        <!-- Row for sample c -->
+                        <div style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem; margin-bottom: 1rem;">
+                            <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/0/c/rgb.jpg"
+                                    preload="metadata" class="human_annotated_unc_high_gt" height="100%">
+                                    <source src="./static/videos/experiments/0/c/rgb.mp4" type="video/mp4" />
+                                </video>
+                                <p style="text-align: left;" id="text_human_annotated_unc_high_gt_sample_0" class="text_human_annotated_unc_high_gt"></p>
+                            </div>
+
+                            <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/0/c/conf_thresh_0.9.jpg"
+                                    preload="metadata" class="human_annotated_unc_high_generated_0" height="100%">
+                                    <source src="./static/videos/experiments/0/c/conf_thresh_0.9.mp4" type="video/mp4" />
+                                </video>
+                            </div>
+
+                            <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                <video autoplay loop muted playsinline
+                                    poster="./static/thumbnails/experiments/0/c/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
+                                    preload="metadata" class="human_annotated_unc_high_composited_0" height="100%">
+                                    <source src="./static/videos/experiments/0/c/composited_pred_conf_gen_video_conf_thresh_0.9.mp4" type="video/mp4" />
+                                </video>
+                            </div>
+
+                            <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
                                 <video autoplay loop muted playsinline
                                     poster="./static/thumbnails/experiments/0/c/pred_conf_gen_video_conf_thresh_0.9.jpg"
-                                    preload="metadata" class="human_annotated_unc_high_generated_0" autoplay muted loop
-                                    playsinline height="100%">
-                                    <source src="./static/videos/experiments/0/c/pred_conf_gen_video_conf_thresh_0.9.mp4"
-                                        type="video/mp4" />
+                                    preload="metadata" class="human_annotated_unc_high_map_0" height="100%">
+                                    <source src="./static/videos/experiments/0/c/pred_conf_gen_video_conf_thresh_0.9.mp4" type="video/mp4" />
                                 </video>
                             </div>
                         </div>
 
-
-                        </div>
                     </div>
                 </div>
             </div>
