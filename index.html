@@ -409,17 +409,17 @@
                             <img src="static/assets/icon.gif" alt="Icon" style="height: 3.5em; max-width: 100%;">
                         </div>
                         <div style="flex: 0 0 82%; text-align: left;">
-                            How Confident are Video Models? <br /> <span style="font-size: xx-large;"> Empowering Video
-                                Models to Express their Uncertainty </span>
+                            Continuous Calibrated Controllable <br /> <span style="font-size: xx-large;"> Video Generation  </span>
                         </div>
                     </div>
                 </h1>
 
                 <!-- ===== AUTHORS (three rows, no underscores) ===== -->
-
                 <div class="is-size-5 publication-authors">
                     <div>
                         <span class="author-block"><a href="https://may0mei.github.io/">Zhiting&nbsp;Mei*</a></span>,
+                        <span class="author-block"><a href="https://tenny-yinyijun.github.io/">Tenny&nbsp;Yin</a></span>,
+                        <span class="author-block"><a href="#">Micah&nbsp;Baker</a></span>,
                         <span class="author-block"><a href="#">Ola&nbsp;Shorinwa*</a></span>,
                         <span class="author-block"><a
                                 href="https://irom-lab.princeton.edu/majumdar/">Anirudha&nbsp;Majumdar</a></span>
@@ -447,10 +447,10 @@
                         class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener">
                         <span class="icon"><i class="fab fa-github"></i></span><span>Code</span>
                     </a>
-                    <a href="https://huggingface.co/datasets/s-qubed/s-qubed"
+                    <!-- <a href="https://huggingface.co/datasets/s-qubed/s-qubed"
                         class="external-link button is-normal is-rounded is-dark" target="_blank" rel="noopener">
                         <span class="icon"><i class="fa fa-database"></i></span><span>Dataset</span>
-                    </a>
+                    </a> -->
                 </div>
 
                 <!-- ===== LAB LOGO ===== -->
@@ -471,12 +471,12 @@
                 <source src="static/videos/overviews/banner.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
-            <p style="margin-top:1rem;">We introduce
-                a framework for uncertainty
-                quantification of generative video models and present
-                <strong>Semantically-Quantifying&nbsp;Uncertainty&nbsp;with&nbsp;Bayesian&nbsp;Entropy&nbsp;Decomposition
-                    (S-QUBED)</strong>, a method
-                for disentangling aleatoric uncertainty from epistemic uncertainty.
+            <p style="margin-top:1rem;">
+                We present <img src="static/images/architecture/algname.svg" alt="C3"
+                    style="display: inline; height: 1em; vertical-align: baseline;">, the first method for 
+                    training continuous-scale calibrated controllable (action-conditioned) video models using
+                    proper scoring rules to generate dense confidence predictions at the subpatch (channel) 
+                    level that are physically interpretable and aligned with observations.
             </p>
         </div>
     </section>
@@ -486,28 +486,28 @@
         <div class="container is-max-desktop content-container">
             <h2 class="title is-3 has-text-centered">Abstract</h2>
             <p>
-                Generative video models demonstrate impressive text-to-video capabilities,
-                spurring widespread adoption in many real-world applications. However, like
-                large language models (LLMs), video generation models tend to hallucinate,
-                producing plausible videos
-                even when they are factually wrong. Although uncertainty
-                quantification (UQ) of LLMs has been extensively studied in prior work, no UQ
-                method for video models exists, raising critical safety concerns. To our knowledge,
-                this paper
-                represents the first work towards quantifying the uncertainty of
-                video models. We present a framework for uncertainty quantification of generative
-                video models, consisting of: (i) a metric for evaluating the calibration of video
-                models based on robust rank correlation estimation with no stringent modeling
-                assumptions; (ii) a black-box UQ method for video models (termed <strong>S-QUBED</strong>),
-                which leverages latent modeling to rigorously decompose predictive uncertainty
-                into its aleatoric and epistemic components; and (iii) a UQ dataset to facilitate
-                benchmarking calibration in video models, which will be released after the review
-                process. By conditioning the generation task in the latent space, we disentangle
-                uncertainty arising due to vague task specifications from that arising from lack
-                of knowledge. Through extensive experiments on benchmark video datasets, we
-                demonstrate that S-QUBED computes calibrated total uncertainty estimates that are
-                negatively correlated with the task accuracy and effectively computes the aleatoric
-                and epistemic constituents.
+                Recent advances in generative video models have led to significant breakthroughs in high-fidelity video synthesis, 
+                specifically in controllable video generation where the generated video is conditioned on text and action inputs. 
+                This impressive leap in performance has paved the way for broad applications from instruction-guided video editing 
+                to world modeling in robotics.
+                Despite these exceptional capabilities, controllable video models often <strong>hallucinate</strong>
+                ---generating future video frames that are misaligned with physical reality---which raises serious concerns 
+                in many tasks such as robot policy evaluation and planning. However, state-of-the-art video models lack the 
+                ability to assess and express their confidence, further impeding hallucination mitigation.
+                To rigorously address this challenge, we propose <img src="static/images/architecture/algname.svg" alt="C3"
+                    style="display: inline; height: 1em; vertical-align: baseline;">,
+                an uncertainty quantification method for training <strong>continuous-scale</strong> <strong>calibrated</strong> <strong>controllable</strong> video models 
+                for <strong>dense</strong> confidence estimation at the <strong>subpatch</strong> (channel) level, precisely localizing the uncertainty 
+                in each generated video frame. The effectiveness of our UQ method is underpinned by three core innovations:
+                First, our method introduces a novel framework that trains video models for <strong>correctness</strong> and <strong>calibration</strong> 
+                via strictly proper scoring rules.
+                Second, we estimate the video model's uncertainty in latent space, avoiding training instability and prohibitive training 
+                costs associated with pixel-space approaches.
+                Third, we map the dense latent-space uncertainty  to <strong>interpretable</strong> pixel-level uncertainty in the RGB space for 
+                intuitive visualization, providing high-resolution uncertainty heatmaps that identify untrustworthy regions.
+                Through extensive experiments on large-scale robot learning datasets (Bridge and DROID) and real-world evaluations, 
+                we demonstrate that our method not only provides calibrated uncertainty estimates within the training distribution, 
+                but also enables effective out-of-distribution detection.
             </p>
             <!-- <br>
       <video id="summary-video" class="shadow" controls preload="metadata" width="100%" poster="static/thumbnails/talk_video.jpg">
@@ -520,7 +520,8 @@
     <!-- ===== Architecture ===== -->
     <section id="architecture" class="section">
         <div class="container is-max-desktop content-container">
-            <h2 class="title is-3 has-text-centered">Uncertainty Quantification via S-QUBED</h2>
+            <h2 class="title is-3 has-text-centered">Uncertainty Quantification via <img src="static/images/architecture/algname.svg" alt="C3"
+                    style="display: inline; height: 1em; vertical-align: baseline;"></h2>
             <video class="overview-video" autoplay loop muted playsinline
                 poster="static/thumbnails/overviews/architecture.jpg">
                 <source src="static/videos/overviews/architecture.mp4" type="video/mp4" />
@@ -528,25 +529,11 @@
             </video>
             <br>
             <p>
-                Given a text prompt <img src="static/images/architecture/l.svg" alt="ℓ"
-                    style="display: inline; height: 1em; vertical-align: baseline;">, S-QUBED quantifies the
-                uncertainty
-                of video generation models via latent modeling.
-                First, our method generates <em>n</em> latent prompts consistent with
-                <img src="static/images/architecture/l.svg" alt="ℓ"
-                    style="display: inline; height: 1em; vertical-align: baseline;">
-                in line with the
-                prompt refinement used by video models, modeling the aleatoric uncertainty as the entropy of the
-                distribution over latent prompts.
-                Then, for each latent prompt, S-QUBED generates <em>m</em> videos,
-                modeling the
-                epistemic uncertainty as the conditional entropy of the distribution over generated videos.
-                Finally,
-                aggregating the two types of uncertainties yields the total predictive uncertainty.
+                architecture
             </p>
         </div>
 
-        <!-- ===== Aleatoric ===== -->
+        <!-- ===== Bridge ===== -->
         <div class="container is-max-desktop content-container">
             <h3 class="title is-4 has-text-centered" style="margin-top: 3rem;">Aleatoric Uncertainty</h3>
             <p>
@@ -658,7 +645,7 @@
                 </div>
             </div>
 
-            <!-- ===== Epistemic ===== -->
+            <!-- ===== DROID ===== -->
             <div class="container is-max-desktop content-container">
                 <h3 class="title is-4 has-text-centered" style="margin-top: 3rem;">Epistemic Uncertainty</h3>
 
@@ -806,26 +793,11 @@
             </p>
             <br>
 
-            <!-- ===== Q1: Metric ===== -->
+            <!-- ===== Main experiment videos ===== -->
             <div class="task-block" id="q1">
-                <h3 class="title is-4 task-title">How do we evaluate uncertainty calibration of video models?</h3>
+                <h3 class="title is-4 task-title">C3 Videos Highlighting Artifacts</h3>
                 <p class="has-text-justified" style="margin-top: 1rem; margin-bottom: 1rem;">
-                    Widely-used calibration metrics, such as the expected calibration error (ECE) and maximum
-                    calibration metrics (MCE) apply
-                    only to evaluation settings with discrete ground-truth answers and errors, e.g., with
-                    multiple-choice questions, making them unsuitable in video generation tasks with real-valued task
-                    errors. Consequently, we propose appropriate metrics for evaluating the calibration of the
-                    uncertainty estimates of video models. Specifically, we examine the Kendall rank correlation
-                    (Kendall's &#964) between the video model's uncertainty estimates and an
-                    applicable accuracy metric, which captures the degree of monotonicity between uncertainty and
-                    accuracy.
-                    Here, we show the statistical significance of
-                    the Kendall rank correlation between human-annotated uncertainty and widely-used perceptual metrics:
-                    structural similarity index measure (SSIM),
-                    peak signal-to-noise ration (PSNR), and
-                    learned perceptual image patch similarity (LPIPS).
-                    We find that
-                    the CLIP cosine similarity score provides the most significant correlation.
+
                 </p>
                 <!-- Result plot-->
                 <img src="./static/images/experiments/metric/rank_correlation.png" class="real-exp-img"
@@ -836,14 +808,15 @@
                     <div class="column" style="text-align: center;">
                         <div style="padding-bottom: 10px; padding-top: 5px; display: flex;">
                             <p>
-                                We visualize ground-truth and generated videos at low, medium, and high
-                                human-labeled uncertainty values (from left to right).
+                                We visualize the ground-truth, generated, composited uncertainty, and uncertainty map videos, 
+                                highlighting the various types of hallucinations of the video model: object appearing/disappearing,
+                                duplication, distortion, gripper misalignment, and background inconsistency.
                             </p>
                         </div>
                         <div class="select is-rounded">
                             <select id="interative-menu-human-annotated-unc"
                                 onchange="updateInteractive_human_annotated_unc('human')">
-                                <option value="0" selected="selected">Sample A</option>
+                                <option value="0" selected="selected">Object Appearing/Disappearning</option> 
                                 <option value="1">Sample B</option>
                             </select>
                         </div>
@@ -857,7 +830,7 @@
                         <!-- ===== Human-annotated Ground-Truth Videos ===== -->
                         <!-- #b9e4f9 -->
                         <div style="display: flex; align-items: center;">
-                            <div class="rounded-textbox" , style="background-color: #b9e4f93d; color: black;">
+                            <div class="rounded-textbox" , style="background-color: #79b5e9; color: black;">
                                 Ground-Truth Videos
                             </div>
                         </div>
@@ -866,58 +839,50 @@
                             style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
                             <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
                                 <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/metric/ground_truth/sample_0/low_unc.jpg"
+                                    poster="./static/thumbnails/experiments/0/a/rgb.jpg"
                                     preload="metadata" class="human_annotated_unc_low_gt" autoplay muted loop
                                     playsinline height="100%">
-                                    <source src="./static/videos/experiments/metric/ground_truth/sample_0/low_unc.mp4"
-                                        type="video/mp4" />
+                                    <source src="./static/videos/experiments/0/a/rgb.mp4"
+                                        type="video/mp4" /> <!--1-->
                                 </video>
                                 <p style="text-align: left;" id="text_human_annotated_unc_low_gt_sample_0"
                                     class="text_human_annotated_unc_low_gt">
-                                    <em>A close up of a moon with holes in
-                                        it.</em>
                                 </p>
                                 <p style="text-align: left; display: none;"
                                     id="text_human_annotated_unc_low_gt_sample_1"
                                     class="text_human_annotated_unc_low_gt">
-                                    <em>A red SUV on display at a car show.&nbsp;&nbsp;&nbsp;</em>
                                 </p>
                             </div>
                             <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
                                 <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/metric/ground_truth/sample_0/med_unc.jpg"
+                                    poster="./static/thumbnails/experiments/0/b/rgb.jpg"
                                     preload="metadata" class="human_annotated_unc_med_gt" autoplay muted loop
                                     playsinline height="100%">
-                                    <source src="./static/videos/experiments/metric/ground_truth/sample_0/med_unc.mp4"
-                                        type="video/mp4" />
+                                    <source src="./static/videos/experiments/0/b/rgb.mp4" 
+                                        type="video/mp4" />  <!--3-->
                                 </video>
                                 <p style="text-align: left;" id="text_human_annotated_unc_med_gt_sample_0"
                                     class="text_human_annotated_unc_med_gt">
-                                    <em>A blender filled with sliced oranges on a
-                                        counter.</em>
                                 </p>
                                 <p style="text-align: left; display: none;"
                                     id="text_human_annotated_unc_med_gt_sample_1"
                                     class="text_human_annotated_unc_med_gt">
-                                    <em>A man and a woman sitting next to each other. </em>
                                 </p>
                             </div>
                             <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
                                 <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/metric/ground_truth/sample_0/high_unc.jpg"
+                                    poster="./static/thumbnails/experiments/0/c/rgb.jpg"
                                     preload="metadata" class="human_annotated_unc_high_gt" autoplay muted loop
                                     playsinline height="100%">
-                                    <source src="./static/videos/experiments/metric/ground_truth/sample_0/high_unc.mp4"
+                                    <source src="./static/videos/experiments/0/c/rgb.mp4"
                                         type="video/mp4" />
                                 </video>
                                 <p style="text-align: left;" id="text_human_annotated_unc_high_gt_sample_0"
                                     class="text_human_annotated_unc_high_gt">
-                                    <em>A video game screen showing a list of items.</em>
                                 </p>
                                 <p style="text-align: left; display: none;"
                                     id="text_human_annotated_unc_high_gt_sample_1"
                                     class="text_human_annotated_unc_high_gt">
-                                    <em>The Boston Celtics are playing a basketball game and the crowd...</em>
                                 </p>
                             </div>
                         </div>
@@ -925,107 +890,121 @@
                         <hr>
 
 
-                        <!-- ===== Human-annotated Generated Videos ===== -->
+                        <!-- ===== Generated Videos ===== -->
                         <div style="display: flex; align-items: center;">
-                            <div class="rounded-textbox" , style="background-color: #b7a8eb30; color: black;">
+                            <div class="rounded-textbox" , style="background-color: #c3a3ec; color: black;">
                                 Generated Videos
                             </div>
                         </div>
 
-                        <!-- Latent 0 -->
                         <div
                             style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
                             <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
                                 <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/metric/generated/sample_0/low_unc_0.jpg"
+                                    poster="./static/thumbnails/experiments/0/a/conf_thresh_0.9.jpg"
                                     preload="metadata" class="human_annotated_unc_low_generated_0" autoplay muted loop
                                     playsinline height="100%">
-                                    <source src="./static/videos/experiments/metric/generated/sample_0/low_unc_0.mp4"
+                                    <source src="./static/videos/experiments/0/a/conf_thresh_0.9.mp4"
                                         type="video/mp4" />
                                 </video>
                             </div>
                             <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
                                 <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/metric/generated/sample_0/med_unc_0.jpg"
+                                    poster="./static/thumbnails/experiments/0/b/conf_thresh_0.9.jpg"
                                     preload="metadata" class="human_annotated_unc_med_generated_0" autoplay muted loop
                                     playsinline height="100%">
-                                    <source src="./static/videos/experiments/metric/generated/sample_0/med_unc_0.mp4"
+                                    <source src="./static/videos/experiments/0/b/conf_thresh_0.9.mp4"
                                         type="video/mp4" />
                                 </video>
                             </div>
                             <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
                                 <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/metric/generated/sample_0/high_unc_0.jpg"
+                                    poster="./static/thumbnails/experiments/0/c/conf_thresh_0.9.jpg"
                                     preload="metadata" class="human_annotated_unc_high_generated_0" autoplay muted loop
                                     playsinline height="100%">
-                                    <source src="./static/videos/experiments/metric/generated/sample_0/high_unc_0.mp4"
+                                    <source src="./static/videos/experiments/0/c/conf_thresh_0.9.mp4"
                                         type="video/mp4" />
                                 </video>
                             </div>
                         </div>
 
-                        <!-- Latent 1 -->
+                        <!-- ===== Composite Videos ===== -->
+                        <div style="display: flex; align-items: center;">
+                            <div class="rounded-textbox" , style="background-color: #fbacb5; color: black;">
+                                Composited Videos
+                            </div>
+                        </div>
+
                         <div
                             style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
                             <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
                                 <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/metric/generated/sample_0/low_unc_1.jpg"
-                                    preload="metadata" class="human_annotated_unc_low_generated_1" autoplay muted loop
+                                    poster="./static/thumbnails/experiments/0/a/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
+                                    preload="metadata" class="human_annotated_unc_low_generated_0" autoplay muted loop
                                     playsinline height="100%">
-                                    <source src="./static/videos/experiments/metric/generated/sample_0/low_unc_1.mp4"
+                                    <source src="./static/videos/experiments/0/a/composited_pred_conf_gen_video_conf_thresh_0.9.mp4"
                                         type="video/mp4" />
                                 </video>
                             </div>
                             <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
                                 <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/metric/generated/sample_0/med_unc_1.jpg"
-                                    preload="metadata" class="human_annotated_unc_med_generated_1" autoplay muted loop
+                                    poster="./static/thumbnails/experiments/0/b/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
+                                    preload="metadata" class="human_annotated_unc_med_generated_0" autoplay muted loop
                                     playsinline height="100%">
-                                    <source src="./static/videos/experiments/metric/generated/sample_0/med_unc_1.mp4"
+                                    <source src="./static/videos/experiments/0/b/composited_pred_conf_gen_video_conf_thresh_0.9.mp4"
                                         type="video/mp4" />
                                 </video>
                             </div>
                             <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
                                 <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/metric/generated/sample_0/high_unc_1.jpg"
-                                    preload="metadata" class="human_annotated_unc_high_generated_1" autoplay muted loop
+                                    poster="./static/thumbnails/experiments/0/c/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
+                                    preload="metadata" class="human_annotated_unc_high_generated_0" autoplay muted loop
                                     playsinline height="100%">
-                                    <source src="./static/videos/experiments/metric/generated/sample_0/high_unc_1.mp4"
+                                    <source src="./static/videos/experiments/0/c/composited_pred_conf_gen_video_conf_thresh_0.9.mp4"
                                         type="video/mp4" />
                                 </video>
                             </div>
                         </div>
 
-                        <!-- Latent 2 -->
+                        <!-- ===== Uncertainty Maps ===== -->
+                        <div style="display: flex; align-items: center;">
+                            <div class="rounded-textbox" , style="background-color: #a2d56b; color: black;">
+                                Uncertainty Maps
+                            </div>
+                        </div>
+
                         <div
                             style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
                             <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
                                 <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/metric/generated/sample_0/low_unc_2.jpg"
-                                    preload="metadata" class="human_annotated_unc_low_generated_2" autoplay muted loop
+                                    poster="./static/thumbnails/experiments/0/a/pred_conf_gen_video_conf_thresh_0.9.jpg"
+                                    preload="metadata" class="human_annotated_unc_low_generated_0" autoplay muted loop
                                     playsinline height="100%">
-                                    <source src="./static/videos/experiments/metric/generated/sample_0/low_unc_2.mp4"
+                                    <source src="./static/videos/experiments/0/a/pred_conf_gen_video_conf_thresh_0.9.mp4"
                                         type="video/mp4" />
                                 </video>
                             </div>
                             <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
                                 <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/metric/generated/sample_0/med_unc_2.jpg"
-                                    preload="metadata" class="human_annotated_unc_med_generated_2" autoplay muted loop
+                                    poster="./static/thumbnails/experiments/0/b/pred_conf_gen_video_conf_thresh_0.9.jpg"
+                                    preload="metadata" class="human_annotated_unc_med_generated_0" autoplay muted loop
                                     playsinline height="100%">
-                                    <source src="./static/videos/experiments/metric/generated/sample_0/med_unc_2.mp4"
+                                    <source src="./static/videos/experiments/0/b/pred_conf_gen_video_conf_thresh_0.9.mp4"
                                         type="video/mp4" />
                                 </video>
                             </div>
                             <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
                                 <video autoplay loop muted playsinline
-                                    poster="./static/thumbnails/experiments/metric/generated/sample_0/high_unc_2.jpg"
-                                    preload="metadata" class="human_annotated_unc_high_generated_2" autoplay muted loop
+                                    poster="./static/thumbnails/experiments/0/c/pred_conf_gen_video_conf_thresh_0.9.jpg"
+                                    preload="metadata" class="human_annotated_unc_high_generated_0" autoplay muted loop
                                     playsinline height="100%">
-                                    <source src="./static/videos/experiments/metric/generated/sample_0/high_unc_2.mp4"
+                                    <source src="./static/videos/experiments/0/c/pred_conf_gen_video_conf_thresh_0.9.mp4"
                                         type="video/mp4" />
                                 </video>
                             </div>
+                        </div>
+
+
                         </div>
                     </div>
                 </div>
