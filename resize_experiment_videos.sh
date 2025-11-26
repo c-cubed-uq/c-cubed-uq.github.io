@@ -33,7 +33,6 @@ for dir in */ ; do
             # remove original file
             rm -f -- "original_$file"
         done
-        done
         # go back to parent directory
         cd ..
     done

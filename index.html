@@ -68,41 +68,45 @@
             // update the relevant elements
             const values = ["low", "med", "high"]
 
+            // map uncertainty level to sample letter in markup
+            const sampleLetter = { "low": "a", "med": "b", "high": "c" }
+
             // update the relevant elements
             for (const val of values) {
-                // ground-truth
-                var videos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_gt");
-                videos.forEach(video => {
-                    video.src = "./static/videos/experiments/metric/ground_truth/sample_" + task + "/" + val + "_unc.mp4"
-                    video.poster = "./static/thumbnails/experiments/metric/ground_truth/sample_" + task + "/" + val + "_unc.jpg"
+            const letter = sampleLetter[val];
+
+            // ground-truth
+            var videos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_gt");
+            videos.forEach(video => {
+                video.src = "./static/videos/experiments/" + task + "/" + letter + "/rgb.mp4"
+                video.poster = "./static/thumbnails/experiments/" + task + "/" + letter + "/rgb.jpg"
+            });
+
+            // generated / composited / map (indices may be 0 only in markup, but loop is safe)
+            for (let t_idx = 0; t_idx < 3; t_idx++) {
+                // generated
+                var genVideos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_generated_" + t_idx);
+                genVideos.forEach(video => {
+                video.src = "./static/videos/experiments/" + task + "/" + letter + "/conf_thresh_0.9.mp4"
+                video.poster = "./static/thumbnails/experiments/" + task + "/" + letter + "/conf_thresh_0.9.jpg"
                 });
 
-                for (let t_idx = 0; t_idx < 3; t_idx++) {
-                    // update element
-                    var videos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_generated_" + t_idx);
-                    videos.forEach(video => {
-                        video.src = "./static/videos/experiments/metric/generated/sample_" + task + "/" + val + "_unc_" + t_idx + ".mp4"
-                        video.poster = "./static/thumbnails/experiments/metric/generated/sample_" + task + "/" + val + "_unc_" + t_idx + ".jpg"
-                    });
-                };
+                // composited
+                var compVideos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_composited_" + t_idx);
+                compVideos.forEach(video => {
+                video.src = "./static/videos/experiments/" + task + "/" + letter + "/composited_pred_conf_gen_video_conf_thresh_0.9.mp4"
+                video.poster = "./static/thumbnails/experiments/" + task + "/" + letter + "/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
+                });
+
+                // uncertainty map
+                var mapVideos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_map_" + t_idx);
+                mapVideos.forEach(video => {
+                video.src = "./static/videos/experiments/" + task + "/" + letter + "/pred_conf_gen_video_conf_thresh_0.9.mp4"
+                video.poster = "./static/thumbnails/experiments/" + task + "/" + letter + "/pred_conf_gen_video_conf_thresh_0.9.jpg"
+                });
+            };
             };
 
-            // update the text annotation
-
-            for (const val of values) {
-                // set display to none
-                var text = carousel.querySelectorAll(".text_" + unc_class + "_unc_" + val + "_gt");
-                text.forEach(text => {
-                    text.style.display = "none";
-                });
-
-                // enable display
-                var text = carousel.querySelectorAll("#text_" + unc_class + "_unc_" + val + "_gt_sample_" + task);
-                text.forEach(text => {
-                    text.style.display = "inline-block";
-                });
-
-            };
 
         }
 
@@ -810,14 +814,17 @@
                             <p>
                                 We visualize the ground-truth, generated, composited uncertainty, and uncertainty map videos, 
                                 highlighting the various types of hallucinations of the video model: object appearing/disappearing,
-                                duplication, distortion, gripper misalignment, and background inconsistency.
+                                distortion, interaction dynamics, and occlusion.
                             </p>
                         </div>
                         <div class="select is-rounded">
                             <select id="interative-menu-human-annotated-unc"
                                 onchange="updateInteractive_human_annotated_unc('human')">
-                                <option value="0" selected="selected">Object Appearing/Disappearning</option> 
-                                <option value="1">Sample B</option>
+                                <option value="0" selected="selected">Object Appearing</option> 
+                                <option value="1">Object Disappearing</option>
+                                <option value="2">Object Distortion</option>
+                                <option value="3">Dynamics</option>
+                                <option value="4">Occlusion</option>
                             </select>
                         </div>
                     </div>
