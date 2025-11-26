@@ -57,7 +57,7 @@
 
         }
 
-        function updateInteractive_human_annotated_unc(unc_class) {
+        function updateInteractive_bridge_hallucination(unc_class) {
             var task = document.getElementById("interative-menu-" + unc_class + "-annotated" + "-unc").value;
 
             var carousel = document.getElementById("results-carousel-" + unc_class + "-annotated" + "-unc")
@@ -554,256 +554,6 @@
             </p>
         </div>
 
-        <!-- ===== Bridge ===== -->
-        <div class="container is-max-desktop content-container">
-            <h3 class="title is-4 has-text-centered" style="margin-top: 3rem;">Aleatoric Uncertainty</h3>
-            <p>
-                Aleatoric uncertainty encompasses irreducible randomness from the vagueness (lack of sufficient
-                specificity) of the conditioning inputs, e.g., “generate a video of a cat doing something.” In video
-                generation, vagueness in the input prompt increases the randomness of the generation of latent prompts.
-            </p>
-
-            <div class="columns" style="text-align: center;">
-                <div class="column">
-                    <div style="padding-bottom: 10px; padding-top: 5px; display: flex;">
-                        <p>
-                            We show examples of different levels of aleatoric uncertainty for different generation
-                            tasks:
-                        </p>
-                    </div>
-                    <div class="select is-rounded">
-                        <select id="interative-menu-aleatoric-unc" onchange="updateInteractive_unc('aleatoric')">
-                            <option value="cat" selected="selected">Animals</option>
-                            <option value="robot">Robots</option>
-                        </select>
-                    </div>
-                </div>
-
-            </div>
-
-
-            <div class="container">
-                <div id="results-carousel-aleatoric-unc" class="carousel results-carousel">
-                    <!-- ===== High Aleatoric ===== -->
-                    <div style="display: flex; align-items: center;">
-                        <div class="rounded-textbox" , style="background-color: #C85E17; color: white;">
-                            High:
-                        </div>
-                        <div style=" display: inline-block; padding: 5px;">
-                            <p style="text-align: left;" id="text_aleatoric_unc_high_cat"
-                                class="text_aleatoric_unc_high"> <em>Generate a video of a cat
-                                    doing
-                                    something.</em>
-                            </p>
-                        </div>
-                        <div style=" display: inline-block; padding: 5px;">
-                            <p style="text-align: left; display: none;" id="text_aleatoric_unc_high_robot"
-                                class="text_aleatoric_unc_high">
-                                <em>Generate a video of a robot manipulator in a room.</em>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div
-                        style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
-                        <div class="thumb-video" style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
-                            <video poster="static/thumbnails/overviews/cat/high_run_0.jpg" preload="metadata"
-                                class="aleatoric_unc_high_run_0" autoplay controls muted loop playsinline height="100%">
-                                <source src="./static/videos/overviews/aleatoric_unc/cat/high_run_0.mp4"
-                                    type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="thumb-video" style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
-                            <video poster="static/thumbnails/overviews/cat/high_run_1.jpg" preload="metadata"
-                                class="aleatoric_unc_high_run_1" autoplay controls muted loop playsinline height="100%">
-                                <source src="./static/videos/overviews/aleatoric_unc/cat/high_run_1.mp4"
-                                    type="video/mp4">
-                            </video>
-                        </div>
-                    </div>
-
-                    <hr>
-
-
-                    <!-- ===== Low Aleatoric ===== -->
-                    <div style="display: flex; align-items: center;">
-                        <div class="rounded-textbox" , style="background-color: #c85e1757;">
-                            Low:
-                        </div>
-                        <div style=" display: inline-block; padding: 5px;">
-                            <p style="text-align: left;" id="text_aleatoric_unc_low_cat" class="text_aleatoric_unc_low">
-                                <em style="padding-left: 2px;">A close-up shot of a tabby cat napping on
-                                    a couch with lots of sunlight coming in through the windows.</em>
-                            </p>
-                        </div>
-                        <div style=" display: inline-block; padding: 5px;">
-                            <p style="text-align: left; display: none;" id="text_aleatoric_unc_low_robot"
-                                class="text_aleatoric_unc_low"> <em>Generate a factory robot manipulator picking up an
-                                    part.</em>
-                            </p>
-                        </div>
-                    </div>
-
-                    <div
-                        style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
-                        <div class="thumb-video" style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
-                            <video poster="static/thumbnails/overviews/aleatoric_unc/cat/low_run_0.jpg"
-                                preload="metadata" class="aleatoric_unc_low_run_0" autoplay controls muted loop
-                                playsinline height="100%">
-                                <source src="./static/videos/overviews/aleatoric_unc/cat/low_run_0.mp4"
-                                    type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="thumb-video" style="flex: 0 0 40%; text-align: center; margin: 0 1rem;">
-                            <video poster="static/thumbnails/overviews/aleatoric_unc/cat/low_run_1.jpg"
-                                preload="metadata" class="aleatoric_unc_low_run_1" autoplay controls muted loop
-                                playsinline height="100%">
-                                <source src="./static/videos/overviews/aleatoric_unc/cat/low_run_1.mp4"
-                                    type="video/mp4">
-                            </video>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ===== DROID ===== -->
-            <div class="container is-max-desktop content-container">
-                <h3 class="title is-4 has-text-centered" style="margin-top: 3rem;">Epistemic Uncertainty</h3>
-
-                <p>
-                    Epistemic uncertainty represents the measure of doubt associated with a lack of knowledge, which
-                    generally results from insufficient training data.
-                    Although the generated videos are all conditioned
-                    on semantically-consistent latent variables, the generated videos might be
-                    semantically-inconsistent,
-                    since the video model has not been trained on videos of lions.
-                </p>
-
-                <div class="columns">
-                    <div class="column" style="text-align: center;">
-                        <div style="padding-bottom: 10px; padding-top: 5px; display: flex;">
-                            <p>
-                                We show examples of different levels of epistemic uncertainty
-                                and the ground-truth (GT) for different generation tasks:
-                            </p>
-                        </div>
-                        <div class="select is-rounded">
-                            <select id="interative-menu-epistemic-unc" onchange="updateInteractive_unc('epistemic')">
-                                <option value="anime" selected="selected">Anime</option>
-                                <option value="food">Food</option>
-                            </select>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="container">
-                    <div id="results-carousel-epistemic-unc" class="carousel results-carousel">
-                        <!-- ===== High Epistemic ===== -->
-                        <div style="display: flex; align-items: center;">
-                            <div class="rounded-textbox" , style="background-color: #E1A205; color: white;">
-                                High:
-                            </div>
-                            <div style=" display: inline-block; padding: 5px;">
-                                <p style="text-align: left;" id="text_epistemic_unc_high_anime"
-                                    class="text_epistemic_unc_high"> <em>Generate a video of Violet Evergarden
-                                        walking with an umbrella.</em>
-                                </p>
-                            </div>
-                            <div style=" display: inline-block; padding: 5px;">
-                                <p style="text-align: left; display: none;" id="text_epistemic_unc_high_food"
-                                    class="text_epistemic_unc_high">
-                                    <em>Generate a video of youpo chemian.</em>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div
-                            style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
-                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
-                                <video poster="./static/videos/overviews/epistemic_unc/anime/gt_high_run.png"
-                                    preload="metadata" class="epistemic_unc_high_run_gt" autoplay muted loop playsinline
-                                    height="100%">
-                                    <source src="./static/videos/overviews/epistemic_unc/anime/gt_high_run.mp4"
-                                        type="video/mp4">
-                                </video>
-                            </div>
-                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
-                                <video poster="static/thumbnails/overviews/anime/high_run_0.jpg" preload="metadata"
-                                    class="epistemic_unc_high_run_0" autoplay controls muted loop playsinline
-                                    height="100%">
-                                    <source src="./static/videos/overviews/epistemic_unc/anime/high_run_0.mp4"
-                                        type="video/mp4">
-                                </video>
-                            </div>
-                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
-                                <video poster="static/thumbnails/overviews/food/high_run_1.jpg" preload="metadata"
-                                    class="epistemic_unc_high_run_1" autoplay controls muted loop playsinline
-                                    height="100%">
-                                    <source src="./static/videos/overviews/epistemic_unc/anime/high_run_1.mp4"
-                                        type="video/mp4">
-                                </video>
-                            </div>
-                        </div>
-
-                        <hr>
-
-
-                        <!-- ===== Low Epistemic ===== -->
-                        <div style="display: flex; align-items: center;">
-                            <div class="rounded-textbox" , style="background-color: #e1a2055e;">
-                                Low:
-                            </div>
-                            <div style=" display: inline-block; padding: 5px;">
-                                <p style="text-align: left;" id="text_epistemic_unc_low_anime"
-                                    class="text_epistemic_unc_low">
-                                    <em>Generate a video of Luffy walking with
-                                        an
-                                        umbrella.</em>
-                                </p>
-                            </div>
-                            <div style=" display: inline-block; padding: 5px;">
-                                <p style="text-align: left; display: none;" id="text_epistemic_unc_low_food"
-                                    class="text_epistemic_unc_low"> <em>Generate a video of lasagna.</em>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div
-                            style="display: flex; align-items: center; justify-content: center; margin: 0 2rem; margin-top: 1rem">
-                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
-                                <video poster="./static/videos/overviews/epistemic_unc/anime/gt_low_run.png"
-                                    preload="metadata" class="epistemic_unc_low_run_gt" autoplay muted loop playsinline
-                                    height="100%">
-                                    <source src="./static/videos/overviews/epistemic_unc/anime/gt_low_run.mp4"
-                                        type="video/mp4">
-                                </video>
-                            </div>
-                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
-                                <video poster="static/thumbnails/overviews/epistemic_unc/anime/low_run_0.jpg"
-                                    preload="metadata" class="epistemic_unc_low_run_0" autoplay controls muted loop
-                                    playsinline height="100%">
-                                    <source src="./static/videos/overviews/epistemic_unc/anime/low_run_0.mp4"
-                                        type="video/mp4">
-                                </video>
-                            </div>
-                            <div class="thumb-video" style="flex: 0 0 30%; text-align: center; margin: 0 1rem;">
-                                <video poster="static/thumbnails/overviews/epistemic_unc/anime/low_run_1.jpg"
-                                    preload="metadata" class="epistemic_unc_low_run_1" autoplay controls muted loop
-                                    playsinline height="100%">
-                                    <source src="./static/videos/overviews/epistemic_unc/anime/low_run_1.mp4"
-                                        type="video/mp4">
-                                </video>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
 
     <!-- ===== Experiments ===== -->
     <section id="experiment-results" class="section">
@@ -827,7 +577,7 @@
 
                 <div class="columns">
                     <div class="column" style="text-align: center;">
-                        <div style="padding-bottom: 10px; padding-top: 5px; display: flex;">
+                        <div style="padding-bottom: 15px; padding-top: 5px; display: flex;">
                             <p>
                                 We visualize the ground-truth, generated, composited uncertainty, and uncertainty map
                                 videos,
@@ -838,8 +588,8 @@
                         </div>
                         <div class="select is-rounded">
                             <select id="interative-menu-human-annotated-unc"
-                                onchange="updateInteractive_human_annotated_unc('human')">
-                                <option value="0" selected="selected">Object Appearing</option>
+                                onchange="updateInteractive_bridge_hallucination('human')">
+                                <option value="0" selected="selected">Object Appearing</option> 
                                 <option value="1">Object Disappearing</option>
                                 <option value="2">Object Distortion</option>
                                 <option value="3">Dynamics</option>
@@ -1013,19 +763,13 @@
             <br>
 
 
-            <!-- ===== Q2: S-QUBED Total Uncertainty ===== -->
+            <!-- ===== OOD Detection ===== -->
             <div class="task-block" id="q2">
-                <h3 class="title is-4 task-title">Are the total predictive uncertainty estimates computed by S-QUBED
-                    calibrated?</h3>
+                <h3 class="title is-4 task-title">Detecting Out-of-Distribution Inputs at Inference</h3>
                 <p class="has-text-justified" style="margin-top: 1rem; margin-bottom: 1rem;">
-                    We examine the calibration of our uncertainty estimates in VidGen-1M and Panda-70M, using the CLIP
-                    score accuracy metric given its effectiveness in assessing calibration.
-                    We first compute the total predictive uncertainty associated with each video task using S-QUBED,
-                    and then evaluate the Kendall rank correlation. We define the accuracy of each task as the mean CLIP
-                    score across all generated videos for that task.
+                    Here, we explore the performance of C3 in out-of-distribution (OOD) detection at inference time, noting
+                    the importance of calibrated uncertainty estimates in reliable OOD detection.
                     <br>
-                    The results indicate a statistically significant
-                    correlation between accuracy and uncertainty for both datasets, signified by the small p-values.
                 </p>
 
                 <!-- Result plot-->
@@ -1036,8 +780,10 @@
                     <div class="column" style="text-align: center;">
                         <div style="padding-bottom: 10px; padding-top: 5px; display: flex;">
                             <p>
-                                We visualize two samples with different total uncertainty from Panda-70M, denoted by
-                                <em>A</em> and <em>B</em>.
+                                We consider five different real-world distribution shifts: background, 
+                                lighting, environment clutter, target object(task), and robot end-effector, 
+                                creating environment settings that are noticeably different from those seen
+                                in the Bridge dataset.
                             </p>
                         </div>
                     </div>
