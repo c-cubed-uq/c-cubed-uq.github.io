@@ -12,10 +12,13 @@
 # )
 
 # change directory
-cd static/videos/experiments
+cd static/videos/experiments/ood
 
 # speed up factor
 factor=4
+
+# frame rate
+framerate=30
 
 # gt filename
 gt_filename=rgb
@@ -44,7 +47,7 @@ for dir in */ ; do
             mv -- "$file" "original_$file"
 
             # speed up video using ffmpeg
-            ffmpeg -i "original_$file" -filter:v "setpts=PTS/4" "$file"
+            ffmpeg -i "original_$file" -filter:v "setpts=PTS/${factor}" -r "$framerate" "$file"
             echo "Processed $file"
 
             # remove original file
