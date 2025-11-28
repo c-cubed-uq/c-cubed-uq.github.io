@@ -83,7 +83,7 @@
                 });
 
                 // generated / composited / map (indices may be 0 only in markup, but loop is safe)
-                for (let t_idx = 0; t_idx < 3; t_idx++) {
+                for (let t_idx = 0; t_idx < 1; t_idx++) {
                     // generated
                     var genVideos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_generated_" + t_idx);
                     genVideos.forEach(video => {
@@ -157,6 +157,60 @@
                     mapVideos.forEach(video => {
                         video.src = "./static/videos/experiments/droid/" + task + "/" + letter + "/pred_conf_gen_video_conf_thresh_0.9.mp4"
                         video.poster = "./static/thumbnails/experiments/droid/" + task + "/" + letter + "/pred_conf_gen_video_conf_thresh_0.9.jpg"
+                    });
+                };
+            };
+
+
+        }
+
+
+        function updateInteractive_ood_hallucination(unc_class) {
+            var task = document.getElementById("interative-menu-" + unc_class + "-annotated" + "-unc").value;
+
+            var carousel = document.getElementById("results-carousel-" + unc_class + "-annotated" + "-unc")
+
+            // update the function parameter
+            unc_class = unc_class + "_annotated"
+
+            // update the relevant elements
+            const values = ["low", "med"]
+
+            // map uncertainty level to sample letter in markup
+            const sampleLetter = { "low": "a", "med": "b", "high": "c" }
+
+            // update the relevant elements
+            for (const val of values) {
+                const letter = sampleLetter[val];
+
+                // ground-truth
+                var videos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_gt");
+                videos.forEach(video => {
+                    video.src = "./static/videos/experiments/ood/" + task + "/" + letter + "/rgb.mp4"
+                    video.poster = "./static/thumbnails/experiments/ood/" + task + "/" + letter + "/rgb.jpg"
+                });
+
+                // generated / composited / map (indices may be 0 only in markup, but loop is safe)
+                for (let t_idx = 0; t_idx < 1; t_idx++) {
+                    // generated
+                    var genVideos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_generated_" + t_idx);
+                    genVideos.forEach(video => {
+                        video.src = "./static/videos/experiments/ood/" + task + "/" + letter + "/conf_thresh_0.600.mp4"
+                        video.poster = "./static/thumbnails/experiments/ood/" + task + "/" + letter + "/conf_thresh_0.600.jpg"
+                    });
+
+                    // composited
+                    var compVideos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_composited_" + t_idx);
+                    compVideos.forEach(video => {
+                        video.src = "./static/videos/experiments/ood/" + task + "/" + letter + "/composited_pred_conf_gen_video_conf_thresh_0.600.mp4"
+                        video.poster = "./static/thumbnails/experiments/ood/" + task + "/" + letter + "/composited_pred_conf_gen_video_conf_thresh_0.600.jpg"
+                    });
+
+                    // uncertainty map
+                    var mapVideos = carousel.querySelectorAll("." + unc_class + "_unc_" + val + "_map_" + t_idx);
+                    mapVideos.forEach(video => {
+                        video.src = "./static/videos/experiments/ood/" + task + "/" + letter + "/pred_conf_gen_video_conf_thresh_0.600.mp4"
+                        video.poster = "./static/thumbnails/experiments/ood/" + task + "/" + letter + "/pred_conf_gen_video_conf_thresh_0.600.jpg"
                     });
                 };
             };
@@ -1050,16 +1104,167 @@
                     <!-- ===== OOD Detection ===== -->
                     <div class="task-block" id="q2">
                         <h3 class="title is-4 task-title">Detecting Out-of-Distribution Inputs at Inference</h3>
-                        <p class="has-text-justified" style="margin-top: 1rem; margin-bottom: 1rem;">
-                            Here, we explore the performance of C3 in out-of-distribution (OOD) detection at inference
-                            time,
-                            noting
-                            the importance of calibrated uncertainty estimates in reliable OOD detection.
-                            <br>
-                        </p>
+                        <!-- <p class="has-text-justified" style="margin-top: 1rem; margin-bottom: 1rem;">
+                        </p> -->
+
+                        <div class="columns">
+                            <div class="column" style="text-align: center;">
+                                <div style="padding-bottom: 15px; padding-top: 5px; display: flex; text-align: left;">
+                                    <p>
+                                        Here, we explore the performance of C3 in out-of-distribution (OOD) detection at
+                                        inference
+                                        time,noting the importance of calibrated uncertainty estimates in reliable OOD
+                                        detection.
+                                        We consider OOD conditions across five axes: back-
+                                        ground, lighting, environment clutter, target object
+                                        (task), and robot end-effector, creating environment
+                                        settings that are noticeably different from those seen
+                                        in the Bridge dataset.
+                                        Under these conditions, we see that the video model struggles to generate
+                                        accurate videos,
+                                        with an observable degradation in the video quality over time.
+                                        Our method captures the increasing
+                                        uncertainty of the video model, both spatially and temporally.
+                                    </p>
+                                </div>
+
+                                <!-- ===== OOD Experiments ===== -->
+                                <div class="select is-rounded">
+                                    <select id="interative-menu-ood-annotated-unc"
+                                        onchange="updateInteractive_ood_hallucination('ood')">
+                                        <option value="0" selected="selected">Background</option>
+                                        <option value="1">Lighting</option>
+                                        <option value="2">Clutter</option>
+                                        <option value="3">Target object</option>
+                                        <option value="4">End-effector</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="container">
+                            <div id="results-carousel-ood-annotated-unc" class="carousel results-carousel">
+
+                                <!-- Top labels aligned with four columns -->
+                                <div
+                                    style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 0 2rem;">
+                                    <div class="rounded-textbox"
+                                        style="flex: 1 1 25%; text-align: center; background-color: #79b5e9; color: black;">
+                                        Ground-Truth
+                                    </div>
+                                    <div class="rounded-textbox"
+                                        style="flex: 1 1 25%; text-align: center; background-color: #c3a3ec; color: black;">
+                                        Generated
+                                    </div>
+                                    <div class="rounded-textbox"
+                                        style="flex: 1 1 25%; text-align: center; background-color: #fbacb5; color: black;">
+                                        Composited
+                                    </div>
+                                    <div class="rounded-textbox"
+                                        style="flex: 1 1 25%; text-align: center; background-color: #a2d56b; color: black;">
+                                        Uncertainty Maps
+                                    </div>
+                                </div>
+
+                                <!-- <hr> -->
+
+                                <!-- Row for sample a -->
+                                <div
+                                    style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem;">
+                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                        <video autoplay loop muted playsinline
+                                            poster="./static/thumbnails/experiments/ood/0/a/rgb.jpg" preload="metadata"
+                                            class="ood_annotated_unc_low_gt" height="100%">
+                                            <source src="./static/videos/experiments/ood/0/a/rgb.mp4"
+                                                type="video/mp4" />
+                                        </video>
+                                        <p style="text-align: left;" id="text_ood_annotated_unc_low_gt_sample_0"
+                                            class="text_ood_annotated_unc_low_gt"></p>
+                                    </div>
+
+                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                        <video autoplay loop muted playsinline
+                                            poster="./static/thumbnails/experiments/ood/0/a/conf_thresh_0.600.jpg"
+                                            preload="metadata" class="ood_annotated_unc_low_generated_0" height="100%">
+                                            <source src="./static/videos/experiments/ood/0/a/conf_thresh_0.600.mp4"
+                                                type="video/mp4" />
+                                        </video>
+                                    </div>
+
+                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                        <video autoplay loop muted playsinline
+                                            poster="./static/thumbnails/experiments/ood/0/a/composited_pred_conf_gen_video_conf_thresh_0.600.jpg"
+                                            preload="metadata" class="ood_annotated_unc_low_composited_0" height="100%">
+                                            <source
+                                                src="./static/videos/experiments/ood/0/a/composited_pred_conf_gen_video_conf_thresh_0.600.mp4"
+                                                type="video/mp4" />
+                                        </video>
+                                    </div>
+
+                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                        <video autoplay loop muted playsinline
+                                            poster="./static/thumbnails/experiments/ood/0/a/pred_conf_gen_video_conf_thresh_0.600.jpg"
+                                            preload="metadata" class="ood_annotated_unc_low_map_0" height="100%">
+                                            <source
+                                                src="./static/videos/experiments/ood/0/a/pred_conf_gen_video_conf_thresh_0.600.mp4"
+                                                type="video/mp4" />
+                                        </video>
+                                    </div>
+                                </div>
+
+                                <!-- Row for sample b -->
+                                <div
+                                    style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem;">
+                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                        <video autoplay loop muted playsinline
+                                            poster="./static/thumbnails/experiments/ood/0/b/rgb.jpg" preload="metadata"
+                                            class="ood_annotated_unc_med_gt" height="100%">
+                                            <source src="./static/videos/experiments/ood/0/b/rgb.mp4"
+                                                type="video/mp4" />
+                                        </video>
+                                        <p style="text-align: left;" id="text_ood_annotated_unc_med_gt_sample_0"
+                                            class="text_ood_annotated_unc_med_gt"></p>
+                                    </div>
+
+                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                        <video autoplay loop muted playsinline
+                                            poster="./static/thumbnails/experiments/ood/0/b/conf_thresh_0.600.jpg"
+                                            preload="metadata" class="ood_annotated_unc_med_generated_0" height="100%">
+                                            <source src="./static/videos/experiments/ood/0/b/conf_thresh_0.600.mp4"
+                                                type="video/mp4" />
+                                        </video>
+                                    </div>
+
+                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                        <video autoplay loop muted playsinline
+                                            poster="./static/thumbnails/experiments/ood/0/b/composited_pred_conf_gen_video_conf_thresh_0.600.jpg"
+                                            preload="metadata" class="ood_annotated_unc_med_composited_0" height="100%">
+                                            <source
+                                                src="./static/videos/experiments/ood/0/b/composited_pred_conf_gen_video_conf_thresh_0.600.mp4"
+                                                type="video/mp4" />
+                                        </video>
+                                    </div>
+
+                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                        <video autoplay loop muted playsinline
+                                            poster="./static/thumbnails/experiments/ood/0/b/pred_conf_gen_video_conf_thresh_0.600.jpg"
+                                            preload="metadata" class="ood_annotated_unc_med_map_0" height="100%">
+                                            <source
+                                                src="./static/videos/experiments/ood/0/b/pred_conf_gen_video_conf_thresh_0.600.mp4"
+                                                type="video/mp4" />
+                                        </video>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
                     </div>
+
+                    <br>
+
                 </div>
         </section>
 

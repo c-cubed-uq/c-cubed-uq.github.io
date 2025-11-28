@@ -1,5 +1,5 @@
 # change directory
-cd static/videos/experiments
+cd static/videos/experiments/ood
 
 # target size matches bridge gt size
 HEIGHT=480
