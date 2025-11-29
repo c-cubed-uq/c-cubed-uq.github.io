@@ -57,16 +57,19 @@ for *dense* confidence estimation at the *subpatch* (channel) level,
 precisely localizing the uncertainty
 in each generated video frame. The effectiveness of our UQ method is underpinned by three core
 innovations:
-First, our method introduces a novel framework that trains video models for *correctness*
+
+1. Our method introduces a novel framework that trains video models for *correctness*
 and *calibration*
 via strictly proper scoring rules.
-Second, we estimate the video model's uncertainty in latent space, avoiding training instability and
+
+2. We estimate the video model's uncertainty in latent space, avoiding training instability and
 prohibitive training
 costs associated with pixel-space approaches.
-Third, we map the dense latent-space uncertainty to *interpretable* pixel-level
+
+3. We map the dense latent-space uncertainty to *interpretable* pixel-level
 uncertainty in the RGB space for
-intuitive visualization, providing high-resolution uncertainty heatmaps that identify untrustworthy
-regions.
+intuitive visualization, providing high-resolution uncertainty heatmaps that identify untrustworthy regions.
+
 Through extensive experiments on large-scale robot learning datasets (Bridge and DROID) and real-world
 evaluations,
 we demonstrate that our method not only provides calibrated uncertainty estimates within the training
