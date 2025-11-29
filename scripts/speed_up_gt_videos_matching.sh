@@ -1,5 +1,5 @@
 # change directory
-cd ../static/videos/experiments/ood
+cd ../static/videos/experiments/interpretability
 
 # speed up factor
 factor=4

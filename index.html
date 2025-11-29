@@ -529,7 +529,8 @@
                         <div style="flex: 0 0 82%; text-align: left;">
                             <img src="static/images/architecture/algname.svg" alt="C3"
                                 style="display: inline; height: 1em; vertical-align: baseline;">
-                            : Video World Models<br /> <span style="font-size: xx-large;">That Know When They Don't Know </span>
+                            : Video World Models<br /> <span style="font-size: xx-large;">That Know When They Don't Know
+                            </span>
                             <!-- Continuous Calibrated Controllable <br /> <span style="font-size: xx-large;"> Video Generation </span> -->
                         </div>
                     </div>
@@ -699,24 +700,22 @@
                 The resulting uncertainty estimates densely identifies
                 This design choice provides a highly-expressive, flexible framework for training video models
                 efficiently.
-                In fact,
-                we train fixed-scale classification, multi-class classification,
-                and continuous-scale classification models with proper scoring rules, demonstrating their calibration
+                We demonstrate the generality of our approach using three model architectures:
+                (i) fixed-scale classification, (ii) multi-class classification,
+                and (iii) continuous-scale classification models.
+                We train these models with proper scoring rules and empirically show calibration
                 across different test scenarios.
                 <br>
                 <br>
                 Our method provides dense interpretable visualizations
                 of the video model's confidence using a confidence heatmap, which
                 transforms the model's confidence predictions to the RGB color space using a color
-                map. The heatmap contains three prominent regions: <em>blue</em> regions which
-                signify areas of <em>high confidence</em> in the accuracy of the predicted pixel,
-                corresponding to locations where the model is relatively certain that the generated
-                video is correct; <em>red</em> regions which represent areas of <em>high
-                    uncertainty</em>, corresponding to locations where the model is unsure if the
-                generated
-                video matches the ground-truth video; and <em>green</em> regions which
-                highlight areas where the model is highly confident about the <em>inaccuracy</em> of
-                the generated video.
+                map. The red regions of the heatmap highlight areas of <em>high uncertainty</em>,
+                corresponding to locations where the model is unsure if the
+                generated video matches the ground-truth video.
+                In contrast, the blue and green regions represent areas of <em>high confidence</em>
+                where the model is highly confident about the <em>accuracy</em> (blue areas)
+                or <em>inaccuracy</em> (green areas) of the generated video.
             </p>
         </div>
 
@@ -744,349 +743,573 @@
                         uncertainty estimates interptretable?
                     </h3>
                     <p class="has-text-justified" style="margin-top: 1rem; margin-bottom: 1rem;">
-
+                        <img src="static/images/architecture/algname.svg" alt="C3"
+                            style="display: inline; height: 1em; vertical-align: baseline;">
+                        produces interpretable uncertainty estimates that are well-calibrated.
+                        Here, we provide visualizations of the dense confidence heatmaps,
+                        showing alignment between the estimated uncertainty and accuracy of the
+                        generated videos qualitatively. Notably, as the generated video increasingly
+                        deviates from the ground-truth, the video model's uncertainty increases as
+                        indicated by the intensity of the red region in the heatmaps.
                     </p>
                     <!-- Result plot-->
                     <!-- <img src="./static/images/experiments/metric/rank_correlation.png" class="real-exp-img"
                     alt="Calibration Plot." /> -->
 
+                    <div class="container">
+                        <div id="results-carousel-interpretability-annotated-unc" class="carousel results-carousel">
 
-
-
-
-                    <!-- ===== Main Hallucination videos ===== -->
-                    <div class="task-block" id="q1">
-                        <h3 class="title is-4 task-title">
-                            Can
-                            <img src="static/images/architecture/algname.svg" alt="C3"
-                                style="display: inline; height: 1em; vertical-align: baseline;">
-                            detect hallucinations?
-                        </h3>
-                        <p class="has-text-justified" style="margin-top: 1rem; margin-bottom: 1rem;">
-
-                        </p>
-                        <!-- Result plot-->
-                        <!-- <img src="./static/images/experiments/metric/rank_correlation.png" class="real-exp-img"
-                    alt="Calibration Plot." /> -->
-
-
-                        <div class="columns">
-                            <div class="column" style="text-align: center;">
-                                <div style="padding-bottom: 15px; padding-top: 5px; display: flex; text-align: left;">
-                                    <p>
-                                        <img src="static/images/architecture/algname.svg" alt="C3"
-                                            style="display: inline; height: 1em; vertical-align: baseline;">
-                                        produces
-                                        interpretable, calibrated uncertainty estimates at a fine-grained level,
-                                        capturing
-                                        non-confident regions of the video which contain hallucinations,
-                                        such as object appearing and disappearing, distortions, physically-inconsistent
-                                        interaction dynamics, and occlusions.
-                                        For example, our method identifies areas with inaccurate blurry background,
-                                        rigid object deformation or enlogation, and uncertainty due to unobservable
-                                        properties, e.g., mass, friction, etc.
-                                        Here, we visualize the ground-truth, generated, composited uncertainty, and
-                                        uncertainty
-                                        map
-                                        videos, highlighting the effectiveness of
-                                        <img src="static/images/architecture/algname.svg" alt="C3"
-                                            style="display: inline; height: 1em; vertical-align: baseline;">
-                                        on the Bridge and Droid datasets.
-                                    </p>
+                            <!-- Top labels aligned with four columns -->
+                            <div
+                                style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 0 2rem;">
+                                <div class="rounded-textbox"
+                                    style="flex: 1 1 25%; text-align: center; background-color: #79b5e9; color: black;">
+                                    Ground-Truth
                                 </div>
-
-                                <!-- ===== Bridge Experiments ===== -->
-                                <h4 class="title is-5 task-title" style="text-align: left; margin-bottom: 0;">Bridge Experiments
-                                </h4>
-
-                                <div class="select is-rounded">
-                                    <select id="interative-menu-bridge-annotated-unc"
-                                        onchange="updateInteractive_bridge_hallucination('bridge')">
-                                        <option value="0" selected="selected">Object Appearing</option>
-                                        <option value="1">Object Disappearing</option>
-                                        <option value="2">Object Distortion</option>
-                                        <option value="3">Non-Physical Dynamics</option>
-                                        <option value="4">Occlusion</option>
-                                    </select>
+                                <div class="rounded-textbox"
+                                    style="flex: 1 1 25%; text-align: center; background-color: #c3a3ec; color: black;">
+                                    Generated
+                                </div>
+                                <div class="rounded-textbox"
+                                    style="flex: 1 1 25%; text-align: center; background-color: #fbacb5; color: black;">
+                                    Composited
+                                </div>
+                                <div class="rounded-textbox"
+                                    style="flex: 1 1 25%; text-align: center; background-color: #a2d56b; color: black;">
+                                    Uncertainty Maps
                                 </div>
                             </div>
 
-                        </div>
+                            <!-- <hr> -->
 
-
-                        <div class="container">
-                            <div id="results-carousel-bridge-annotated-unc" class="carousel results-carousel">
-
-                                <!-- Top labels aligned with four columns -->
-                                <div
-                                    style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 0 2rem;">
-                                    <div class="rounded-textbox"
-                                        style="flex: 1 1 25%; text-align: center; background-color: #79b5e9; color: black;">
-                                        Ground-Truth
-                                    </div>
-                                    <div class="rounded-textbox"
-                                        style="flex: 1 1 25%; text-align: center; background-color: #c3a3ec; color: black;">
-                                        Generated
-                                    </div>
-                                    <div class="rounded-textbox"
-                                        style="flex: 1 1 25%; text-align: center; background-color: #fbacb5; color: black;">
-                                        Composited
-                                    </div>
-                                    <div class="rounded-textbox"
-                                        style="flex: 1 1 25%; text-align: center; background-color: #a2d56b; color: black;">
-                                        Uncertainty Maps
-                                    </div>
+                            <!-- Row for sample a -->
+                            <div
+                                style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem;">
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/interpretability/0/a/rgb.jpg"
+                                        preload="metadata" class="interpretability_annotated_unc_low_gt" height="100%">
+                                        <source src="./static/videos/experiments/interpretability/0/a/rgb.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                    <p style="text-align: left;"
+                                        id="text_interpretability_annotated_unc_low_gt_sample_0"
+                                        class="text_interpretability_annotated_unc_low_gt"></p>
                                 </div>
 
-                                <!-- <hr> -->
-
-                                <!-- Row for sample a -->
-                                <div
-                                    style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem;">
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/bridge/0/a/rgb.jpg"
-                                            preload="metadata" class="bridge_annotated_unc_low_gt" height="100%">
-                                            <source src="./static/videos/experiments/bridge/0/a/rgb.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                        <p style="text-align: left;" id="text_bridge_annotated_unc_low_gt_sample_0"
-                                            class="text_bridge_annotated_unc_low_gt"></p>
-                                    </div>
-
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/bridge/0/a/conf_thresh_0.9.jpg"
-                                            preload="metadata" class="bridge_annotated_unc_low_generated_0"
-                                            height="100%">
-                                            <source src="./static/videos/experiments/bridge/0/a/conf_thresh_0.9.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                    </div>
-
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/bridge/0/a/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
-                                            preload="metadata" class="bridge_annotated_unc_low_composited_0"
-                                            height="100%">
-                                            <source
-                                                src="./static/videos/experiments/bridge/0/a/composited_pred_conf_gen_video_conf_thresh_0.9.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                    </div>
-
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/bridge/0/a/pred_conf_gen_video_conf_thresh_0.9.jpg"
-                                            preload="metadata" class="bridge_annotated_unc_low_map_0" height="100%">
-                                            <source
-                                                src="./static/videos/experiments/bridge/0/a/pred_conf_gen_video_conf_thresh_0.9.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                    </div>
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/interpretability/0/a/conf_thresh_1.0.jpg"
+                                        preload="metadata" class="interpretability_annotated_unc_low_generated_0"
+                                        height="100%">
+                                        <source
+                                            src="./static/videos/experiments/interpretability/0/a/conf_thresh_1.0.mp4"
+                                            type="video/mp4" />
+                                    </video>
                                 </div>
 
-                                <!-- Row for sample b -->
-                                <div
-                                    style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem;">
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/bridge/0/b/rgb.jpg"
-                                            preload="metadata" class="bridge_annotated_unc_med_gt" height="100%">
-                                            <source src="./static/videos/experiments/bridge/0/b/rgb.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                        <p style="text-align: left;" id="text_bridge_annotated_unc_med_gt_sample_0"
-                                            class="text_bridge_annotated_unc_med_gt"></p>
-                                    </div>
-
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/bridge/0/b/conf_thresh_0.9.jpg"
-                                            preload="metadata" class="bridge_annotated_unc_med_generated_0"
-                                            height="100%">
-                                            <source src="./static/videos/experiments/bridge/0/b/conf_thresh_0.9.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                    </div>
-
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/bridge/0/b/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
-                                            preload="metadata" class="bridge_annotated_unc_med_composited_0"
-                                            height="100%">
-                                            <source
-                                                src="./static/videos/experiments/bridge/0/b/composited_pred_conf_gen_video_conf_thresh_0.9.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                    </div>
-
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/bridge/0/b/pred_conf_gen_video_conf_thresh_0.9.jpg"
-                                            preload="metadata" class="bridge_annotated_unc_med_map_0" height="100%">
-                                            <source
-                                                src="./static/videos/experiments/bridge/0/b/pred_conf_gen_video_conf_thresh_0.9.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                    </div>
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/interpretability/0/a/composited_pred_conf_gen_video_conf_thresh_1.0.jpg"
+                                        preload="metadata" class="interpretability_annotated_unc_low_composited_0"
+                                        height="100%">
+                                        <source
+                                            src="./static/videos/experiments/interpretability/0/a/composited_pred_conf_gen_video_conf_thresh_1.0.mp4"
+                                            type="video/mp4" />
+                                    </video>
                                 </div>
 
-                                <!-- Row for sample c -->
-                                <div
-                                    style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem; margin-bottom: 1rem;">
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/bridge/0/c/rgb.jpg"
-                                            preload="metadata" class="bridge_annotated_unc_high_gt" height="100%">
-                                            <source src="./static/videos/experiments/bridge/0/c/rgb.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                        <p style="text-align: left;" id="text_bridge_annotated_unc_high_gt_sample_0"
-                                            class="text_bridge_annotated_unc_high_gt"></p>
-                                    </div>
-
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/bridge/0/c/conf_thresh_0.9.jpg"
-                                            preload="metadata" class="bridge_annotated_unc_high_generated_0"
-                                            height="100%">
-                                            <source src="./static/videos/experiments/bridge/0/c/conf_thresh_0.9.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                    </div>
-
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/bridge/0/c/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
-                                            preload="metadata" class="bridge_annotated_unc_high_composited_0"
-                                            height="100%">
-                                            <source
-                                                src="./static/videos/experiments/bridge/0/c/composited_pred_conf_gen_video_conf_thresh_0.9.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                    </div>
-
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/bridge/0/c/pred_conf_gen_video_conf_thresh_0.9.jpg"
-                                            preload="metadata" class="bridge_annotated_unc_high_map_0" height="100%">
-                                            <source
-                                                src="./static/videos/experiments/bridge/0/c/pred_conf_gen_video_conf_thresh_0.9.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-
-
-                        <hr>
-
-                        <div class="columns">
-                            <div class="column" style="text-align: center;">
-                                <!-- ===== DROID Experiments ===== -->
-                                <h4 class="title is-5 task-title" style="text-align: left; margin-bottom: 0;">DROID Experiments</h4>
-
-                                <div class="select is-rounded">
-                                    <select id="interative-menu-droid-annotated-unc"
-                                        onchange="updateInteractive_droid_hallucination('droid')">
-                                        <option value="0" selected="selected">Object Appearing</option>
-                                        <option value="1">Object Disappearing</option>
-                                        <option value="2">Object Distortion</option>
-                                        <option value="3">Non-Physical Dynamics</option>
-                                        <!-- <option value="4">Occlusion</option> -->
-                                    </select>
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/interpretability/0/a/pred_conf_gen_video_conf_thresh_1.0.jpg"
+                                        preload="metadata" class="interpretability_annotated_unc_low_map_0"
+                                        height="100%">
+                                        <source
+                                            src="./static/videos/experiments/interpretability/0/a/pred_conf_gen_video_conf_thresh_1.0.mp4"
+                                            type="video/mp4" />
+                                    </video>
                                 </div>
                             </div>
 
-                        </div>
-
-
-
-                        <div class="container">
-                            <div id="results-carousel-droid-annotated-unc" class="carousel results-carousel">
-
-                                <!-- Top labels aligned with four columns -->
-                                <div
-                                    style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 0 2rem;">
-                                    <div class="rounded-textbox"
-                                        style="flex: 1 1 25%; text-align: center; background-color: #79b5e9; color: black;">
-                                        Ground-Truth
-                                    </div>
-                                    <div class="rounded-textbox"
-                                        style="flex: 1 1 25%; text-align: center; background-color: #c3a3ec; color: black;">
-                                        Generated
-                                    </div>
-                                    <div class="rounded-textbox"
-                                        style="flex: 1 1 25%; text-align: center; background-color: #fbacb5; color: black;">
-                                        Composited
-                                    </div>
-                                    <div class="rounded-textbox"
-                                        style="flex: 1 1 25%; text-align: center; background-color: #a2d56b; color: black;">
-                                        Uncertainty Maps
-                                    </div>
+                            <!-- Row for sample b -->
+                            <div
+                                style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem;">
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/interpretability/0/b/rgb.jpg"
+                                        preload="metadata" class="interpretability_annotated_unc_med_gt" height="100%">
+                                        <source src="./static/videos/experiments/interpretability/0/b/rgb.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                    <p style="text-align: left;"
+                                        id="text_interpretability_annotated_unc_med_gt_sample_0"
+                                        class="text_interpretability_annotated_unc_med_gt"></p>
                                 </div>
 
-                                <!-- <hr> -->
-
-                                <!-- Row for sample a -->
-                                <div
-                                    style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem;">
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/droid/0/a/rgb.jpg"
-                                            preload="metadata" class="droid_annotated_unc_low_gt" height="100%">
-                                            <source src="./static/videos/experiments/droid/0/a/rgb.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                        <p style="text-align: left;" id="text_droid_annotated_unc_low_gt_sample_0"
-                                            class="text_droid_annotated_unc_low_gt"></p>
-                                    </div>
-
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/droid/0/a/conf_thresh_0.9.jpg"
-                                            preload="metadata" class="droid_annotated_unc_low_generated_0"
-                                            height="100%">
-                                            <source src="./static/videos/experiments/droid/0/a/conf_thresh_0.9.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                    </div>
-
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/droid/0/a/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
-                                            preload="metadata" class="droid_annotated_unc_low_composited_0"
-                                            height="100%">
-                                            <source
-                                                src="./static/videos/experiments/droid/0/a/composited_pred_conf_gen_video_conf_thresh_0.9.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                    </div>
-
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/droid/0/a/pred_conf_gen_video_conf_thresh_0.9.jpg"
-                                            preload="metadata" class="droid_annotated_unc_low_map_0" height="100%">
-                                            <source
-                                                src="./static/videos/experiments/droid/0/a/pred_conf_gen_video_conf_thresh_0.9.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                    </div>
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/interpretability/0/b/conf_thresh_1.0.jpg"
+                                        preload="metadata" class="interpretability_annotated_unc_med_generated_0"
+                                        height="100%">
+                                        <source
+                                            src="./static/videos/experiments/interpretability/0/b/conf_thresh_1.0.mp4"
+                                            type="video/mp4" />
+                                    </video>
                                 </div>
-                                <hr>
 
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/interpretability/0/b/composited_pred_conf_gen_video_conf_thresh_1.0.jpg"
+                                        preload="metadata" class="interpretability_annotated_unc_med_composited_0"
+                                        height="100%">
+                                        <source
+                                            src="./static/videos/experiments/interpretability/0/b/composited_pred_conf_gen_video_conf_thresh_1.0.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/interpretability/0/b/pred_conf_gen_video_conf_thresh_1.0.jpg"
+                                        preload="metadata" class="interpretability_annotated_unc_med_map_0"
+                                        height="100%">
+                                        <source
+                                            src="./static/videos/experiments/interpretability/0/b/pred_conf_gen_video_conf_thresh_1.0.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
                             </div>
+
+                            <!-- Row for sample c -->
+                            <div
+                                style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem; margin-bottom: 1rem;">
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/interpretability/0/c/rgb.jpg"
+                                        preload="metadata" class="interpretability_annotated_unc_high_gt" height="100%">
+                                        <source src="./static/videos/experiments/interpretability/0/c/rgb.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                    <p style="text-align: left;"
+                                        id="text_interpretability_annotated_unc_high_gt_sample_0"
+                                        class="text_interpretability_annotated_unc_high_gt"></p>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/interpretability/0/c/conf_thresh_1.0.jpg"
+                                        preload="metadata" class="interpretability_annotated_unc_high_generated_0"
+                                        height="100%">
+                                        <source
+                                            src="./static/videos/experiments/interpretability/0/c/conf_thresh_1.0.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/interpretability/0/c/composited_pred_conf_gen_video_conf_thresh_1.0.jpg"
+                                        preload="metadata" class="interpretability_annotated_unc_high_composited_0"
+                                        height="100%">
+                                        <source
+                                            src="./static/videos/experiments/interpretability/0/c/composited_pred_conf_gen_video_conf_thresh_1.0.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/interpretability/0/c/pred_conf_gen_video_conf_thresh_1.0.jpg"
+                                        preload="metadata" class="interpretability_annotated_unc_high_map_0"
+                                        height="100%">
+                                        <source
+                                            src="./static/videos/experiments/interpretability/0/c/pred_conf_gen_video_conf_thresh_1.0.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+                            </div>
+
+                            <!-- Row for sample d -->
+                            <div
+                                style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem; margin-bottom: 1rem;">
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/interpretability/0/d/rgb.jpg"
+                                        preload="metadata" class="interpretability_annotated_unc_high_gt" height="100%">
+                                        <source src="./static/videos/experiments/interpretability/0/d/rgb.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                    <p style="text-align: left;"
+                                        id="text_interpretability_annotated_unc_high_gt_sample_0"
+                                        class="text_interpretability_annotated_unc_high_gt"></p>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/interpretability/0/d/conf_thresh_1.0.jpg"
+                                        preload="metadata" class="interpretability_annotated_unc_high_generated_0"
+                                        height="100%">
+                                        <source
+                                            src="./static/videos/experiments/interpretability/0/d/conf_thresh_1.0.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/interpretability/0/d/composited_pred_conf_gen_video_conf_thresh_1.0.jpg"
+                                        preload="metadata" class="interpretability_annotated_unc_high_composited_0"
+                                        height="100%">
+                                        <source
+                                            src="./static/videos/experiments/interpretability/0/d/composited_pred_conf_gen_video_conf_thresh_1.0.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/interpretability/0/d/pred_conf_gen_video_conf_thresh_1.0.jpg"
+                                        preload="metadata" class="interpretability_annotated_unc_high_map_0"
+                                        height="100%">
+                                        <source
+                                            src="./static/videos/experiments/interpretability/0/d/pred_conf_gen_video_conf_thresh_1.0.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
-                    <br>
+                </div>
 
-                    <!-- ===== DROID Experiments ===== -->
-                    <!-- <div class="task-block" id="q2">
+
+
+
+
+                <!-- ===== Main Hallucination videos ===== -->
+                <div class="task-block" id="q2">
+                    <h3 class="title is-4 task-title">
+                        Can
+                        <img src="static/images/architecture/algname.svg" alt="C3"
+                            style="display: inline; height: 1em; vertical-align: baseline;">
+                        detect hallucinations?
+                    </h3>
+                    <p class="has-text-justified" style="margin-top: 1rem; margin-bottom: 1rem;">
+
+                    </p>
+                    <!-- Result plot-->
+                    <!-- <img src="./static/images/experiments/metric/rank_correlation.png" class="real-exp-img"
+                     alt="Calibration Plot." /> -->
+
+
+                    <div class="columns">
+                        <div class="column" style="text-align: center;">
+                            <div style="padding-bottom: 15px; padding-top: 5px; display: flex; text-align: left;">
+                                <p>
+                                    <img src="static/images/architecture/algname.svg" alt="C3"
+                                        style="display: inline; height: 1em; vertical-align: baseline;">
+                                    produces
+                                    interpretable, calibrated uncertainty estimates at a fine-grained level,
+                                    capturing
+                                    non-confident regions of the video which contain hallucinations,
+                                    such as object appearing and disappearing, distortions, physically-inconsistent
+                                    interaction dynamics, and occlusions.
+                                    For example, our method identifies areas with inaccurate blurry background,
+                                    rigid object deformation or enlogation, and uncertainty due to unobservable
+                                    properties, e.g., mass, friction, etc.
+                                    Here, we visualize the ground-truth, generated, composited uncertainty, and
+                                    uncertainty
+                                    map
+                                    videos, highlighting the effectiveness of
+                                    <img src="static/images/architecture/algname.svg" alt="C3"
+                                        style="display: inline; height: 1em; vertical-align: baseline;">
+                                    on the Bridge and Droid datasets.
+                                </p>
+                            </div>
+
+                            <!-- ===== Bridge Experiments ===== -->
+                            <h4 class="title is-5 task-title" style="text-align: left; margin-bottom: 0;">Bridge
+                                Experiments
+                            </h4>
+
+                            <div class="select is-rounded">
+                                <select id="interative-menu-bridge-annotated-unc"
+                                    onchange="updateInteractive_bridge_hallucination('bridge')">
+                                    <option value="0" selected="selected">Object Appearing</option>
+                                    <option value="1">Object Disappearing</option>
+                                    <option value="2">Object Distortion</option>
+                                    <option value="3">Non-Physical Dynamics</option>
+                                    <option value="4">Occlusion</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="container">
+                        <div id="results-carousel-bridge-annotated-unc" class="carousel results-carousel">
+
+                            <!-- Top labels aligned with four columns -->
+                            <div
+                                style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 0 2rem;">
+                                <div class="rounded-textbox"
+                                    style="flex: 1 1 25%; text-align: center; background-color: #79b5e9; color: black;">
+                                    Ground-Truth
+                                </div>
+                                <div class="rounded-textbox"
+                                    style="flex: 1 1 25%; text-align: center; background-color: #c3a3ec; color: black;">
+                                    Generated
+                                </div>
+                                <div class="rounded-textbox"
+                                    style="flex: 1 1 25%; text-align: center; background-color: #fbacb5; color: black;">
+                                    Composited
+                                </div>
+                                <div class="rounded-textbox"
+                                    style="flex: 1 1 25%; text-align: center; background-color: #a2d56b; color: black;">
+                                    Uncertainty Maps
+                                </div>
+                            </div>
+
+                            <!-- <hr> -->
+
+                            <!-- Row for sample a -->
+                            <div
+                                style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem;">
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/bridge/0/a/rgb.jpg" preload="metadata"
+                                        class="bridge_annotated_unc_low_gt" height="100%">
+                                        <source src="./static/videos/experiments/bridge/0/a/rgb.mp4" type="video/mp4" />
+                                    </video>
+                                    <p style="text-align: left;" id="text_bridge_annotated_unc_low_gt_sample_0"
+                                        class="text_bridge_annotated_unc_low_gt"></p>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/bridge/0/a/conf_thresh_0.9.jpg"
+                                        preload="metadata" class="bridge_annotated_unc_low_generated_0" height="100%">
+                                        <source src="./static/videos/experiments/bridge/0/a/conf_thresh_0.9.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/bridge/0/a/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
+                                        preload="metadata" class="bridge_annotated_unc_low_composited_0" height="100%">
+                                        <source
+                                            src="./static/videos/experiments/bridge/0/a/composited_pred_conf_gen_video_conf_thresh_0.9.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/bridge/0/a/pred_conf_gen_video_conf_thresh_0.9.jpg"
+                                        preload="metadata" class="bridge_annotated_unc_low_map_0" height="100%">
+                                        <source
+                                            src="./static/videos/experiments/bridge/0/a/pred_conf_gen_video_conf_thresh_0.9.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+                            </div>
+
+                            <!-- Row for sample b -->
+                            <div
+                                style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem;">
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/bridge/0/b/rgb.jpg" preload="metadata"
+                                        class="bridge_annotated_unc_med_gt" height="100%">
+                                        <source src="./static/videos/experiments/bridge/0/b/rgb.mp4" type="video/mp4" />
+                                    </video>
+                                    <p style="text-align: left;" id="text_bridge_annotated_unc_med_gt_sample_0"
+                                        class="text_bridge_annotated_unc_med_gt"></p>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/bridge/0/b/conf_thresh_0.9.jpg"
+                                        preload="metadata" class="bridge_annotated_unc_med_generated_0" height="100%">
+                                        <source src="./static/videos/experiments/bridge/0/b/conf_thresh_0.9.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/bridge/0/b/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
+                                        preload="metadata" class="bridge_annotated_unc_med_composited_0" height="100%">
+                                        <source
+                                            src="./static/videos/experiments/bridge/0/b/composited_pred_conf_gen_video_conf_thresh_0.9.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/bridge/0/b/pred_conf_gen_video_conf_thresh_0.9.jpg"
+                                        preload="metadata" class="bridge_annotated_unc_med_map_0" height="100%">
+                                        <source
+                                            src="./static/videos/experiments/bridge/0/b/pred_conf_gen_video_conf_thresh_0.9.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+                            </div>
+
+                            <!-- Row for sample c -->
+                            <div
+                                style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem; margin-bottom: 1rem;">
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/bridge/0/c/rgb.jpg" preload="metadata"
+                                        class="bridge_annotated_unc_high_gt" height="100%">
+                                        <source src="./static/videos/experiments/bridge/0/c/rgb.mp4" type="video/mp4" />
+                                    </video>
+                                    <p style="text-align: left;" id="text_bridge_annotated_unc_high_gt_sample_0"
+                                        class="text_bridge_annotated_unc_high_gt"></p>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/bridge/0/c/conf_thresh_0.9.jpg"
+                                        preload="metadata" class="bridge_annotated_unc_high_generated_0" height="100%">
+                                        <source src="./static/videos/experiments/bridge/0/c/conf_thresh_0.9.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/bridge/0/c/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
+                                        preload="metadata" class="bridge_annotated_unc_high_composited_0" height="100%">
+                                        <source
+                                            src="./static/videos/experiments/bridge/0/c/composited_pred_conf_gen_video_conf_thresh_0.9.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/bridge/0/c/pred_conf_gen_video_conf_thresh_0.9.jpg"
+                                        preload="metadata" class="bridge_annotated_unc_high_map_0" height="100%">
+                                        <source
+                                            src="./static/videos/experiments/bridge/0/c/pred_conf_gen_video_conf_thresh_0.9.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <hr>
+
+                    <div class="columns">
+                        <div class="column" style="text-align: center;">
+                            <!-- ===== DROID Experiments ===== -->
+                            <h4 class="title is-5 task-title" style="text-align: left; margin-bottom: 0;">DROID
+                                Experiments</h4>
+
+                            <div class="select is-rounded">
+                                <select id="interative-menu-droid-annotated-unc"
+                                    onchange="updateInteractive_droid_hallucination('droid')">
+                                    <option value="0" selected="selected">Object Appearing</option>
+                                    <option value="1">Object Disappearing</option>
+                                    <option value="2">Object Distortion</option>
+                                    <option value="3">Non-Physical Dynamics</option>
+                                    <!-- <option value="4">Occlusion</option> -->
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="container">
+                        <div id="results-carousel-droid-annotated-unc" class="carousel results-carousel">
+
+                            <!-- Top labels aligned with four columns -->
+                            <div
+                                style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 0 2rem;">
+                                <div class="rounded-textbox"
+                                    style="flex: 1 1 25%; text-align: center; background-color: #79b5e9; color: black;">
+                                    Ground-Truth
+                                </div>
+                                <div class="rounded-textbox"
+                                    style="flex: 1 1 25%; text-align: center; background-color: #c3a3ec; color: black;">
+                                    Generated
+                                </div>
+                                <div class="rounded-textbox"
+                                    style="flex: 1 1 25%; text-align: center; background-color: #fbacb5; color: black;">
+                                    Composited
+                                </div>
+                                <div class="rounded-textbox"
+                                    style="flex: 1 1 25%; text-align: center; background-color: #a2d56b; color: black;">
+                                    Uncertainty Maps
+                                </div>
+                            </div>
+
+                            <!-- <hr> -->
+
+                            <!-- Row for sample a -->
+                            <div
+                                style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem;">
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/droid/0/a/rgb.jpg" preload="metadata"
+                                        class="droid_annotated_unc_low_gt" height="100%">
+                                        <source src="./static/videos/experiments/droid/0/a/rgb.mp4" type="video/mp4" />
+                                    </video>
+                                    <p style="text-align: left;" id="text_droid_annotated_unc_low_gt_sample_0"
+                                        class="text_droid_annotated_unc_low_gt"></p>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/droid/0/a/conf_thresh_0.9.jpg"
+                                        preload="metadata" class="droid_annotated_unc_low_generated_0" height="100%">
+                                        <source src="./static/videos/experiments/droid/0/a/conf_thresh_0.9.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/droid/0/a/composited_pred_conf_gen_video_conf_thresh_0.9.jpg"
+                                        preload="metadata" class="droid_annotated_unc_low_composited_0" height="100%">
+                                        <source
+                                            src="./static/videos/experiments/droid/0/a/composited_pred_conf_gen_video_conf_thresh_0.9.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/droid/0/a/pred_conf_gen_video_conf_thresh_0.9.jpg"
+                                        preload="metadata" class="droid_annotated_unc_low_map_0" height="100%">
+                                        <source
+                                            src="./static/videos/experiments/droid/0/a/pred_conf_gen_video_conf_thresh_0.9.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+                            </div>
+                            <hr>
+
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <!-- ===== DROID Experiments ===== -->
+                <!-- <div class="task-block" id="q2">
                     <h3 class="title is-4 task-title">
                         Can
                         <img src="static/images/architecture/algname.svg" alt="C3"
@@ -1101,171 +1324,172 @@
 
                 </div> -->
 
-                    <!-- ===== OOD Detection ===== -->
-                    <div class="task-block" id="q2">
-                        <h3 class="title is-4 task-title">Detecting Out-of-Distribution Inputs at Inference</h3>
-                        <!-- <p class="has-text-justified" style="margin-top: 1rem; margin-bottom: 1rem;">
+                <!-- ===== OOD Detection ===== -->
+                <div class="task-block" id="q3">
+                    <h3 class="title is-4 task-title">Detecting Out-of-Distribution Inputs at Inference</h3>
+                    <!-- <p class="has-text-justified" style="margin-top: 1rem; margin-bottom: 1rem;">
                         </p> -->
 
-                        <div class="columns">
-                            <div class="column" style="text-align: center;">
-                                <div style="padding-bottom: 15px; padding-top: 5px; display: flex; text-align: left;">
-                                    <p>
-                                        Here, we explore the performance of C3 in out-of-distribution (OOD) detection at
-                                        inference
-                                        time,noting the importance of calibrated uncertainty estimates in reliable OOD
-                                        detection.
-                                        We consider OOD conditions across five axes: back-
-                                        ground, lighting, environment clutter, target object
-                                        (task), and robot end-effector, creating environment
-                                        settings that are noticeably different from those seen
-                                        in the Bridge dataset.
-                                        Under these conditions, we see that the video model struggles to generate
-                                        accurate videos,
-                                        with an observable degradation in the video quality over time.
-                                        Our method captures the increasing
-                                        uncertainty of the video model, both spatially and temporally.
-                                    </p>
-                                </div>
-
-                                <!-- ===== OOD Experiments ===== -->
-                                <div class="select is-rounded">
-                                    <select id="interative-menu-ood-annotated-unc"
-                                        onchange="updateInteractive_ood_hallucination('ood')">
-                                        <option value="0" selected="selected">Background</option>
-                                        <option value="1">Lighting</option>
-                                        <option value="2">Clutter</option>
-                                        <option value="3">Target object</option>
-                                        <option value="4">End-effector</option>
-                                    </select>
-                                </div>
+                    <div class="columns">
+                        <div class="column" style="text-align: center;">
+                            <div style="padding-bottom: 15px; padding-top: 5px; display: flex; text-align: left;">
+                                <p>
+                                    Here, we explore the performance of
+                                    <img src="static/images/architecture/algname.svg" alt="C3"
+                                        style="display: inline; height: 1em; vertical-align: baseline;">
+                                    in out-of-distribution (OOD) detection at
+                                    inference
+                                    time,noting the importance of calibrated uncertainty estimates in reliable OOD
+                                    detection.
+                                    We consider OOD conditions across five axes: back-
+                                    ground, lighting, environment clutter, target object
+                                    (task), and robot end-effector, creating environment
+                                    settings that are noticeably different from those seen
+                                    in the Bridge dataset.
+                                    Under these conditions, we see that the video model struggles to generate
+                                    accurate videos,
+                                    with an observable degradation in the video quality over time.
+                                    Our method captures the increasing
+                                    uncertainty of the video model, both spatially and temporally.
+                                </p>
                             </div>
 
-                        </div>
-
-
-                        <div class="container">
-                            <div id="results-carousel-ood-annotated-unc" class="carousel results-carousel">
-
-                                <!-- Top labels aligned with four columns -->
-                                <div
-                                    style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 0 2rem;">
-                                    <div class="rounded-textbox"
-                                        style="flex: 1 1 25%; text-align: center; background-color: #79b5e9; color: black;">
-                                        Ground-Truth
-                                    </div>
-                                    <div class="rounded-textbox"
-                                        style="flex: 1 1 25%; text-align: center; background-color: #c3a3ec; color: black;">
-                                        Generated
-                                    </div>
-                                    <div class="rounded-textbox"
-                                        style="flex: 1 1 25%; text-align: center; background-color: #fbacb5; color: black;">
-                                        Composited
-                                    </div>
-                                    <div class="rounded-textbox"
-                                        style="flex: 1 1 25%; text-align: center; background-color: #a2d56b; color: black;">
-                                        Uncertainty Maps
-                                    </div>
-                                </div>
-
-                                <!-- <hr> -->
-
-                                <!-- Row for sample a -->
-                                <div
-                                    style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem;">
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/ood/0/a/rgb.jpg" preload="metadata"
-                                            class="ood_annotated_unc_low_gt" height="100%">
-                                            <source src="./static/videos/experiments/ood/0/a/rgb.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                        <p style="text-align: left;" id="text_ood_annotated_unc_low_gt_sample_0"
-                                            class="text_ood_annotated_unc_low_gt"></p>
-                                    </div>
-
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/ood/0/a/conf_thresh_0.600.jpg"
-                                            preload="metadata" class="ood_annotated_unc_low_generated_0" height="100%">
-                                            <source src="./static/videos/experiments/ood/0/a/conf_thresh_0.600.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                    </div>
-
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/ood/0/a/composited_pred_conf_gen_video_conf_thresh_0.600.jpg"
-                                            preload="metadata" class="ood_annotated_unc_low_composited_0" height="100%">
-                                            <source
-                                                src="./static/videos/experiments/ood/0/a/composited_pred_conf_gen_video_conf_thresh_0.600.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                    </div>
-
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/ood/0/a/pred_conf_gen_video_conf_thresh_0.600.jpg"
-                                            preload="metadata" class="ood_annotated_unc_low_map_0" height="100%">
-                                            <source
-                                                src="./static/videos/experiments/ood/0/a/pred_conf_gen_video_conf_thresh_0.600.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                    </div>
-                                </div>
-
-                                <!-- Row for sample b -->
-                                <div
-                                    style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem;">
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/ood/0/b/rgb.jpg" preload="metadata"
-                                            class="ood_annotated_unc_med_gt" height="100%">
-                                            <source src="./static/videos/experiments/ood/0/b/rgb.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                        <p style="text-align: left;" id="text_ood_annotated_unc_med_gt_sample_0"
-                                            class="text_ood_annotated_unc_med_gt"></p>
-                                    </div>
-
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/ood/0/b/conf_thresh_0.600.jpg"
-                                            preload="metadata" class="ood_annotated_unc_med_generated_0" height="100%">
-                                            <source src="./static/videos/experiments/ood/0/b/conf_thresh_0.600.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                    </div>
-
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/ood/0/b/composited_pred_conf_gen_video_conf_thresh_0.600.jpg"
-                                            preload="metadata" class="ood_annotated_unc_med_composited_0" height="100%">
-                                            <source
-                                                src="./static/videos/experiments/ood/0/b/composited_pred_conf_gen_video_conf_thresh_0.600.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                    </div>
-
-                                    <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
-                                        <video autoplay loop muted playsinline
-                                            poster="./static/thumbnails/experiments/ood/0/b/pred_conf_gen_video_conf_thresh_0.600.jpg"
-                                            preload="metadata" class="ood_annotated_unc_med_map_0" height="100%">
-                                            <source
-                                                src="./static/videos/experiments/ood/0/b/pred_conf_gen_video_conf_thresh_0.600.mp4"
-                                                type="video/mp4" />
-                                        </video>
-                                    </div>
-                                </div>
+                            <!-- ===== OOD Experiments ===== -->
+                            <div class="select is-rounded">
+                                <select id="interative-menu-ood-annotated-unc"
+                                    onchange="updateInteractive_ood_hallucination('ood')">
+                                    <option value="0" selected="selected">Background</option>
+                                    <option value="1">Lighting</option>
+                                    <option value="2">Clutter</option>
+                                    <option value="3">Target object</option>
+                                    <option value="4">End-effector</option>
+                                </select>
                             </div>
                         </div>
-
 
                     </div>
 
-                    <br>
+
+                    <div class="container">
+                        <div id="results-carousel-ood-annotated-unc" class="carousel results-carousel">
+
+                            <!-- Top labels aligned with four columns -->
+                            <div
+                                style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin: 0 2rem;">
+                                <div class="rounded-textbox"
+                                    style="flex: 1 1 25%; text-align: center; background-color: #79b5e9; color: black;">
+                                    Ground-Truth
+                                </div>
+                                <div class="rounded-textbox"
+                                    style="flex: 1 1 25%; text-align: center; background-color: #c3a3ec; color: black;">
+                                    Generated
+                                </div>
+                                <div class="rounded-textbox"
+                                    style="flex: 1 1 25%; text-align: center; background-color: #fbacb5; color: black;">
+                                    Composited
+                                </div>
+                                <div class="rounded-textbox"
+                                    style="flex: 1 1 25%; text-align: center; background-color: #a2d56b; color: black;">
+                                    Uncertainty Maps
+                                </div>
+                            </div>
+
+                            <!-- <hr> -->
+
+                            <!-- Row for sample a -->
+                            <div
+                                style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem;">
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/ood/0/a/rgb.jpg" preload="metadata"
+                                        class="ood_annotated_unc_low_gt" height="100%">
+                                        <source src="./static/videos/experiments/ood/0/a/rgb.mp4" type="video/mp4" />
+                                    </video>
+                                    <p style="text-align: left;" id="text_ood_annotated_unc_low_gt_sample_0"
+                                        class="text_ood_annotated_unc_low_gt"></p>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/ood/0/a/conf_thresh_0.600.jpg"
+                                        preload="metadata" class="ood_annotated_unc_low_generated_0" height="100%">
+                                        <source src="./static/videos/experiments/ood/0/a/conf_thresh_0.600.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/ood/0/a/composited_pred_conf_gen_video_conf_thresh_0.600.jpg"
+                                        preload="metadata" class="ood_annotated_unc_low_composited_0" height="100%">
+                                        <source
+                                            src="./static/videos/experiments/ood/0/a/composited_pred_conf_gen_video_conf_thresh_0.600.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/ood/0/a/pred_conf_gen_video_conf_thresh_0.600.jpg"
+                                        preload="metadata" class="ood_annotated_unc_low_map_0" height="100%">
+                                        <source
+                                            src="./static/videos/experiments/ood/0/a/pred_conf_gen_video_conf_thresh_0.600.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+                            </div>
+
+                            <!-- Row for sample b -->
+                            <div
+                                style="display: flex; align-items: flex-start; justify-content: center; gap: 1rem; margin: 0 2rem; margin-top: 1rem;">
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/ood/0/b/rgb.jpg" preload="metadata"
+                                        class="ood_annotated_unc_med_gt" height="100%">
+                                        <source src="./static/videos/experiments/ood/0/b/rgb.mp4" type="video/mp4" />
+                                    </video>
+                                    <p style="text-align: left;" id="text_ood_annotated_unc_med_gt_sample_0"
+                                        class="text_ood_annotated_unc_med_gt"></p>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/ood/0/b/conf_thresh_0.600.jpg"
+                                        preload="metadata" class="ood_annotated_unc_med_generated_0" height="100%">
+                                        <source src="./static/videos/experiments/ood/0/b/conf_thresh_0.600.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/ood/0/b/composited_pred_conf_gen_video_conf_thresh_0.600.jpg"
+                                        preload="metadata" class="ood_annotated_unc_med_composited_0" height="100%">
+                                        <source
+                                            src="./static/videos/experiments/ood/0/b/composited_pred_conf_gen_video_conf_thresh_0.600.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+
+                                <div class="thumb-video" style="flex: 1 1 25%; text-align: center;">
+                                    <video autoplay loop muted playsinline
+                                        poster="./static/thumbnails/experiments/ood/0/b/pred_conf_gen_video_conf_thresh_0.600.jpg"
+                                        preload="metadata" class="ood_annotated_unc_med_map_0" height="100%">
+                                        <source
+                                            src="./static/videos/experiments/ood/0/b/pred_conf_gen_video_conf_thresh_0.600.mp4"
+                                            type="video/mp4" />
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
 
                 </div>
+
+                <br>
+
+            </div>
         </section>
 
 
