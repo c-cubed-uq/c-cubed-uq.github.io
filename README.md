@@ -22,9 +22,9 @@
     <sup>&#42;</sup>Equal Contribution.
 </p>
 <p align="center">
-  <a href="">
+  <!-- <a href="">
     <img src="static/assets/irom_princeton.png" width="80%">
-  </a>
+  </a> -->
   <h4 align="center">
   <a href="https://c-cubed-uq.github.io/">Project Page</a> 
   | <a href= "#">arXiv (Coming Soon!)</a>
