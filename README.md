@@ -4,7 +4,8 @@
             <img src="static/assets/icon.gif" alt="Icon" style="height: 3.5em; max-width: 100%;">
         </div>
         <div style="flex: 0 0 82%; text-align: left;">
-            $C^3$: Video World Models <br /> <span style="font-size: xx-large;"> That Know When They Don't Know </span>
+            Calibrated Controllable Video Synthesis:
+            <br /> <span style="font-size: xx-large;">Video World Models That Know When They Don't Know         
         </div>
     </div>
 </h1>
