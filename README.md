@@ -5,7 +5,8 @@
         </div>
         <div style="flex: 0 0 86%; text-align: left;">
             World Models That Know When They Don't Know:
-            <br /> <span style="font-size: xx-large;">Controllable Video Generation with Calibrated Uncertainty    
+            <br /> <span style="font-size: xx-large;">Controllable Video Generation<span>
+            <br /> <span style="font-size: xx-large;">with Calibrated Uncertainty<span>
         </div>
     </div>
 </h1>
