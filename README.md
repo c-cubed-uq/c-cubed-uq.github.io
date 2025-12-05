@@ -1,9 +1,9 @@
 <h1 align="center">
     <div style="display: flex; align-items: center; justify-content: center;">
-        <div style="flex: 0 0 18%; text-align: center;">
+        <div style="flex: 0 0 14%; text-align: center;">
             <img src="static/assets/icon.gif" alt="Icon" style="height: 3.5em; max-width: 100%;">
         </div>
-        <div style="flex: 0 0 82%; text-align: left;">
+        <div style="flex: 0 0 86%; text-align: left;">
             World Models That Know When They Don't Know:
             <br /> <span style="font-size: xx-large;">Controllable Video Generation with Calibrated Uncertainty    
         </div>
